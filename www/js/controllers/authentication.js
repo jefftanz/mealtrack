@@ -16,7 +16,7 @@ app.controller('LoginCtrl', function ($scope, $state, AuthService) {
 			console.log("LoginCtrl::login");
 			AuthService.login($scope.formData.email, $scope.formData.password)
 				.then(function () {
-					$state.go("tab.meals")
+					$state.go("menu.meals")
 				});
 		}
 
@@ -42,7 +42,7 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
 				$scope.formData.name,
 				$scope.formData.password)
 				.then(function () {
-					$state.go("tab.meals")
+					$state.go("menu.meals")
 				});
 		}
 	};

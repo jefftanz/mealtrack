@@ -14,7 +14,7 @@ app.controller('AccountCtrl', function ($scope, $state, AuthService) {
 		if (form.$valid) {
 			console.log("AccountCtrl::submit");
 			AuthService.update($scope.formData).then(function () {
-				$state.go("tab.meals");
+				$state.go("menu.meals");
 			});
 		}
 	};

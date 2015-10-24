@@ -38,8 +38,23 @@ app.service("MealService", function ($q, AuthService) {
 			mealQuery.find({
 				success: function (results) {
 					angular.forEach(results, function (item) {
-						var meal = new Meal(item);
-						self.results.push(meal)
+            //TODO Figure out why turning it into a Meal gets rid of the .id accessibility
+						//var meal = new Meal(item);
+
+            //console.log("item.id"+item.id);
+            //console.log("item.objectId"+item.objectId);
+            //console.log("item.get(id)"+item.get("id"));
+            //console.log("item.get(objectId)"+item.get("objectId"));
+            //console.log("item"+item);
+            //console.log("meal"+meal);
+            //console.log("Id : "+meal.id);
+            //console.log("get Id : "+meal.get("id"));
+            //console.log("objectId : "+meal.objectId);
+            //console.log("get objectId : "+meal.get("objectId"));
+
+						//self.results.push(meal);
+            self.results.push(item);
+
 					});
 					console.debug(self.results);
 
@@ -87,7 +102,45 @@ app.service("MealService", function ($q, AuthService) {
 			});
 
 			return d.promise;
-		}
+		},
+    'update': function (index, data) {
+
+      console.log("index : "+index);
+      //self.isSaving = true;
+      //var d = $q.defer();
+      //
+      //var Meal = self.results[index];
+      //
+      //
+      //var Meal = Parse.Object.extend("Meal");
+      //var user = AuthService.user;
+      //var file = data.picture ? new Parse.File("photo.jpg", {base64: data.picture}) : null;
+      //
+      //var meal = new Meal();
+      //meal.set("owner", user);
+      //meal.set("picture", file);
+      //meal.set("title", data.title);
+      //meal.set("category", data.category);
+      //meal.set("calories", parseInt(data.calories));
+      //meal.set("created", new Date());
+      //
+      //meal.save(null, {
+      //  success: function (meal) {
+      //    console.log("Meal tracked");
+      //    self.results.unshift(meal);
+      //    d.resolve(meal);
+      //  },
+      //  error: function (item, error) {
+      //    $ionicPopup.alert({
+      //      title: "Error saving meal",
+      //      subTitle: error.message
+      //    });
+      //    d.reject(error);
+      //  }
+      //});
+      //
+      //return d.promise;
+    }
 
 	};
 

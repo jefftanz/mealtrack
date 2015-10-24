@@ -1,0 +1,55 @@
+<ion-view view-title="Meals" >
+
+  <ion-nav-buttons side="secondary" >
+    <button class="button button-clear"
+            ng-click="addMeal()" >Add
+    </button >
+  </ion-nav-buttons >
+
+	<ion-content >
+
+		<ion-refresher
+				pulling-text="Pull to refresh..."
+				on-refresh="refreshItems()" >
+		</ion-refresher >
+
+    <!-- make this an ion-list? -->
+		<div class="list card item-card"
+		     >
+
+      <ion-item class="item"
+           href="#/menu/edit/{{meal.id}}"
+           ng-repeat="meal in meals.results">
+        <!--ng-click="editMeal(meal.id)"-->
+        <div class="item" >
+          <h2 >{{meal.id}}</h2 >
+          <h2 >{{meal.attributes.title}}</h2 >
+          <p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
+        </div >
+
+        <div class="item item-image"
+             ng-if="meal.attributes.picture" >
+          <img ng-src="{{meal.attributes.picture.url()}}" >
+        </div >
+
+        <div class="item " >
+          <span class="category" >#{{meal.attributes.category|lowercase}}</span >
+          <span class="calories" >{{meal.attributes.calories}}cal</span >
+        </div >
+      </ion-item>
+
+
+		</div >
+
+		<ion-infinite-scroll
+				ng-if="meals.hasMore"
+				on-infinite="nextPage()"
+				immediate-check="false" >
+		</ion-infinite-scroll >
+
+		<div class="padding text-center"
+		     ng-if="!meals.hasMore" >
+			<p >No more results</p >
+		</div >
+	</ion-content >
+</ion-view >

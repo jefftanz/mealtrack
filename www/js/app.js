@@ -90,37 +90,42 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			controller: 'SignupCtrl',
 			templateUrl: "templates/signup.html"
 		})
-		.state('tab', {
-			url: "/tab",
-			abstract: true,
-			templateUrl: "templates/tabs.html"
-		})
-		.state('tab.meals', {
-			url: '/meals',
-			views: {
-				'tab-meals': {
-					templateUrl: 'templates/tabs/tab-meals.html',
-					controller: 'MealListCtrl'
-				}
-			}
-		})
-		.state('tab.track', {
+    .state('menu', {
+      url: "/menu",
+      abstract: true,
+      templateUrl: "templates/menu.html"
+    })
+    .state('menu.home', {
+      url: '/home',
+      templateUrl: 'templates/menu/home.html'
+    })
+    .state('menu.details', {
+      url: '/details',
+      templateUrl: 'templates/menu/details.html'
+    })
+    .state('menu.settings', {
+      url: '/settings',
+      templateUrl: 'templates/menu/settings.html'
+    })
+    .state('menu.meals', {
+      url: '/meals',
+      templateUrl: 'templates/menu/meals.html',
+      controller : 'MealListCtrl'
+    })
+		.state('menu.track', {
 			url: '/track',
-			views: {
-				'tab-track': {
-					templateUrl: 'templates/tabs/tab-track.html',
-					controller: 'MealCreateCtrl'
-				}
-			}
+      templateUrl: 'templates/menu/track.html',
+      controller : 'MealCreateCtrl'
 		})
-		.state('tab.account', {
+    .state('menu.edit', {
+      url: '/edit/:mealId',
+      templateUrl: 'templates/menu/edit-meal.html',
+      controller : 'MealEditCtrl'
+    })
+		.state('menu.account', {
 			url: '/account',
-			views: {
-				'tab-account': {
-					templateUrl: 'templates/tabs/tab-account.html',
-					controller: 'AccountCtrl'
-				}
-			}
+      templateUrl: 'templates/menu/account.html',
+      controller : 'AccountCtrl'
 		});
 
 	// if none of the above states are matched, use this as the fallback
