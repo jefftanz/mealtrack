@@ -1,10 +1,13 @@
 var app = angular.module('mealtrack', [
 	'ionic',
+  'ionic.service.core',
+  'ionic.service.analytics',
 	'ngMessages',
 	'ngCordova',
 	'angularMoment',
 	'parse-angular',
 	'parse-angular.enhance',
+  'mealtrack.controllers.intro',
 	'mealtrack.controllers.authentication',
 	'mealtrack.controllers.meals',
 	'mealtrack.controllers.account',
@@ -26,13 +29,56 @@ app.run(function ($ionicPlatform) {
 		}
 	});
 
-		// Initialise Parse - Keys needed
-		Parse.initialize(<PLATFORM_KEY>, <JAVASCRIPT_KEY>);
+		// Initialise Parse
+		Parse.initialize(<KEY>, <KEY>);
+});
+
+app.run(function ($ionicPlatform, $ionicAnalytics){
+  $ionicPlatform.ready(function (){
+    $ionicAnalytics.register();
+  });
+});
+
+app.run(function ($ionicPlatform) {
+  $ionicPlatform.ready(function () {
+    var deploy = new Ionic.Deploy();
+    deploy.watch().then(
+      function noop() {
+      },
+      function noop() {
+      },
+      function hasUpdate(hasUpdate) {
+        console.log("Has Update ", hasUpdate);
+        if (hasUpdate) {
+          console.log("Calling ionicDeploy.update()");
+          deploy.update().then(function (deployResult) {
+          // deployResult will be true when successfull and
+          // false otherwise
+          }, function (deployUpdateError) {
+            // fired if we're unable to check for updates or if any
+            // errors have occured.
+            console.log('Ionic Deploy: Update error! ', deployUpdateError);
+          }, function (deployProgress) {
+            // this is a progress callback, so it will be called a lot
+            // deployProgress will be an Integer representing the current
+            // completion percentage.
+            console.log('Ionic Deploy: Progress... ', deployProgress);
+          });
+        }
+      }
+    );
+  });
 });
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider
-		.state('login', {
+    .state('intro', {
+      url: "/intro",
+      cache: false,
+      controller: 'IntroCtrl',
+      templateUrl: "templates/intro.html"
+    })
+    .state('login', {
 			url: "/login",
 			cache: false,
 			controller: 'LoginCtrl',
@@ -75,10 +121,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 					controller: 'AccountCtrl'
 				}
 			}
-		})
-	;
+		});
 
 	// if none of the above states are matched, use this as the fallback
-	$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/intro');
 
 });
