@@ -103,43 +103,53 @@ app.service("MealService", function ($q, AuthService) {
 
 			return d.promise;
 		},
-    'update': function (index, data) {
+    'getMeal': function (mealId) {
+      console.log("this.results.length : "+this.results.length);
+      for (var i = 0; i < this.results.length; i++){
+        if (this.results[i].id == mealId){
+          return this.results[i];
+          console.log("Found meal");
+        }
+      }
+      console.log("Meal Not found");
+      return undefined;
+    },
+    'update': function (formData, mealId) {
+      self.isSaving = true;
+      var d = $q.defer();
 
-      console.log("index : "+index);
-      //self.isSaving = true;
-      //var d = $q.defer();
-      //
-      //var Meal = self.results[index];
-      //
-      //
-      //var Meal = Parse.Object.extend("Meal");
-      //var user = AuthService.user;
-      //var file = data.picture ? new Parse.File("photo.jpg", {base64: data.picture}) : null;
-      //
-      //var meal = new Meal();
-      //meal.set("owner", user);
-      //meal.set("picture", file);
-      //meal.set("title", data.title);
-      //meal.set("category", data.category);
-      //meal.set("calories", parseInt(data.calories));
-      //meal.set("created", new Date());
-      //
-      //meal.save(null, {
-      //  success: function (meal) {
-      //    console.log("Meal tracked");
-      //    self.results.unshift(meal);
-      //    d.resolve(meal);
-      //  },
-      //  error: function (item, error) {
-      //    $ionicPopup.alert({
-      //      title: "Error saving meal",
-      //      subTitle: error.message
-      //    });
-      //    d.reject(error);
-      //  }
-      //});
-      //
-      //return d.promise;
+      var Meal = Parse.Object.extend("Meal");
+      var user = AuthService.user;
+      //var file = formData.picture ? new Parse.File("photo.jpg", {base64: formData.picture}) : null;
+      // TODO figure out when to replace the picture or leave it alone.
+
+      var item = this.getMeal(mealId);
+      var meal = new Meal(item);
+      meal.set("owner", user);
+
+      //if (file != null){ meal.set("picture", file);}
+
+      meal.set("id", mealId);
+      meal.set("title", formData.title);
+      meal.set("category", formData.category);
+      meal.set("calories", parseInt(formData.calories));
+
+      meal.save(null, {
+        success: function (meal) {
+          console.log("Meal updated");
+          self.results.unshift(meal);
+          d.resolve(meal);
+        },
+        error: function (item, error) {
+          $ionicPopup.alert({
+            title: "Error saving meal",
+            subTitle: error.message
+          });
+          d.reject(error);
+        }
+      });
+
+      return d.promise;
     }
 
 	};

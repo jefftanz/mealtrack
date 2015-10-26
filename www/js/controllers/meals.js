@@ -14,6 +14,8 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
 	$scope.meals = MealService;
   gMeals = MealService;
 
+  console.log("inside MealListCtrl");
+
 	$ionicLoading.show();
 	$scope.meals.load().then(function () {
 		$ionicLoading.hide();
@@ -62,7 +64,6 @@ app.controller('MealCreateCtrl', function ($scope,
 		};
 	};
 	$scope.resetFormData();
-
 
 	$scope.trackMeal = function (form) {
 		if (form.$valid) {
@@ -114,7 +115,21 @@ app.controller('MealEditCtrl', function ($scope,
                                          MealService) {
 
   $scope.mealId = $state.params.mealId;
+  $scope.meals = MealService;
 
+  console.log("parameterId : "+ $scope.mealId);
+  console.log("length of meals array : "+ MealService.results.length);
+
+  $scope.setMeal = function(){
+    var meal = MealService.getMeal($state.params.mealId);
+
+    $scope.formData = {
+      'title': meal.get("title"),
+      'category': meal.get("category"),
+      'calories': parseInt(meal.get("calories")),
+      'picture': null
+    };
+  };
 
   $scope.resetFormData = function () {
     $scope.formData = {
@@ -123,22 +138,6 @@ app.controller('MealEditCtrl', function ($scope,
       'calories': 29,
       'picture': null
     };
-  };
-  $scope.resetFormData();
-
-
-  $scope.trackMeal = function (form) {
-    if (form.$valid) {
-      console.log("MealCreateCtrl::trackMeal");
-
-      $ionicLoading.show();
-      MealService.track($scope.formData).then(function () {
-        $scope.resetFormData();
-        $ionicLoading.hide();
-        form.$setPristine(true);
-        $state.go("menu.meals");
-      });
-    }
   };
 
   $scope.addPicture = function () {
@@ -163,5 +162,21 @@ app.controller('MealEditCtrl', function ($scope,
       });
     });
   };
+
+  $scope.saveMeal = function (form) {
+    console.log("MealEditCtrl::saveMeal");
+    $ionicLoading.show();
+    MealService.update($scope.formData, $scope.mealId).then(function () {
+
+      $scope.meals.refresh().then(function(){
+        $scope.resetFormData();
+        $ionicLoading.hide();
+        form.$setPristine(true);
+        $state.go("menu.meals");
+      });
+    });
+  };
+
+  $scope.setMeal();
 
 });
