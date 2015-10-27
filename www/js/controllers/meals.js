@@ -15,31 +15,42 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
   gMeals = MealService;
 
   console.log("inside MealListCtrl");
+  console.log("state param goToEdit: "+$state.params.gotoEdit);
+  console.log("state param lastMealIdAdded: "+$state.params.lastMealIdAdded);
 
 	$ionicLoading.show();
 	$scope.meals.load().then(function () {
+    console.log("MealListCtrl-after meals.load promise");
 		$ionicLoading.hide();
 	});
 
+  $scope.$on("callEditFromAdd", function(event, args){
+    console.log("callEditFromAdd event : "+args.mealId);
+  });
+
 	$scope.refreshItems = function () {
 		$scope.meals.refresh().then(function () {
+      console.log("MealListCtrl-refreshItems");
 			$scope.$broadcast('scroll.refreshComplete');
 		});
 	};
 
 	$scope.nextPage = function () {
 		$scope.meals.next().then(function () {
+      console.log("MealListCtrl-nextPage");
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 		});
 	};
 
   $scope.editMeal = function(id){
     console.log("mealId : "+id);
-    //$state.go("menu.edit-meal/"+id);
-    $state.go("menu.edit");
+    console.log("MealListCtrl-editMeal");
+    $state.go("menu.edit", { "mealId": id});
+    //$state.go("menu.edit");
   };
 
   $scope.addMeal = function(){
+    console.log("MealListCtrl-addMeal");
     $state.go("menu.track");
   };
 
@@ -55,6 +66,11 @@ app.controller('MealCreateCtrl', function ($scope,
                                            $cordovaCamera,
                                            MealService) {
 
+  $scope.saveAndAdd = function(){
+    $scope.saveAndAddVar = true;
+    console.log("inside saveAndAdd");
+  }
+
 	$scope.resetFormData = function () {
 		$scope.formData = {
 			'title': '',
@@ -69,6 +85,8 @@ app.controller('MealCreateCtrl', function ($scope,
       'group' : '',
 			'picture': null
 		};
+
+    $scope.saveAndAddVar = false;
 	};
 	$scope.resetFormData();
 
@@ -78,13 +96,39 @@ app.controller('MealCreateCtrl', function ($scope,
 
 			$ionicLoading.show();
 			MealService.track($scope.formData).then(function () {
+        var saveAndAdd = $scope.saveAndAddVar;
 				$scope.resetFormData();
 				$ionicLoading.hide();
 				form.$setPristine(true);
-				$state.go("menu.meals");
+        //console.log("lastMealIdAdded "+MealService.lastMealIdAdded);
+        console.log("saveAndAdd:"+saveAndAdd);
+        if (saveAndAdd){
+          $state.go("menu.meals").then(function(){
+            $state.go("menu.track");
+          });
+        }else{
+          $state.go("menu.meals");
+        }
 			});
 		}
 	};
+
+  //$scope.trackMealAndAdd = function (form) {
+  //  if (form.$valid) {
+  //    console.log("MealCreateCtrl::trackAndAdd");
+  //
+  //    $ionicLoading.show();
+  //    MealService.track($scope.formData).then(function () {
+  //      $scope.resetFormData();
+  //      $ionicLoading.hide();
+  //      form.$setPristine(true);
+  //      //console.log("lastMealIdAdded "+MealService.lastMealIdAdded);
+  //      $state.go("menu.meals").then(function(){
+  //        $state.go("menu.track");
+  //      });
+  //    });
+  //  }
+  //};
 
 	$scope.addPicture = function () {
 		var options = {
@@ -124,7 +168,7 @@ app.controller('MealEditCtrl', function ($scope,
   $scope.mealId = $state.params.mealId;
   $scope.meals = MealService;
 
-  console.log("parameterId : "+ $scope.mealId);
+  console.log("state param mealId : "+ $scope.mealId);
   console.log("length of meals array : "+ MealService.results.length);
 
   $scope.setMeal = function(){
@@ -199,5 +243,6 @@ app.controller('MealEditCtrl', function ($scope,
   };
 
   $scope.setMeal();
+  console.log("selectedMeal : "+ MealService.selectedMeal);
 
 });

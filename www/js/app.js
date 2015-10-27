@@ -11,8 +11,10 @@ var app = angular.module('mealtrack', [
 	'mealtrack.controllers.authentication',
 	'mealtrack.controllers.meals',
 	'mealtrack.controllers.account',
+  'mealtrack.controllers.stats',
 	'mealtrack.services.authentication',
 	'mealtrack.services.meals',
+  'mealtrack.services.stats',
 	'mealtrack.filters.mealtime'
 ]);
 
@@ -99,10 +101,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       url: '/home',
       templateUrl: 'templates/menu/home.html'
     })
-    .state('menu.details', {
-      url: '/details',
-      templateUrl: 'templates/menu/details.html'
-    })
     .state('menu.settings', {
       url: '/settings',
       templateUrl: 'templates/menu/settings.html'
@@ -142,22 +140,27 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     .state('menu.grain', {
       url: '/group/grain',
       templateUrl: 'templates/menu/group/group-grain.html',
-      controller : ''
     })
     .state('menu.oil', {
       url: '/group/oil',
       templateUrl: 'templates/menu/group/group-oil.html',
-      controller : ''
     })
     .state('menu.protein', {
       url: '/group/protein',
       templateUrl: 'templates/menu/group/group-protein.html',
-      controller : ''
     })
     .state('menu.vegatable', {
       url: '/group/vegatable',
       templateUrl: 'templates/menu/group/group-vegatable.html',
-      controller : ''
+    })
+    .state('menu.stats', {
+      url: '/stats',
+      templateUrl: 'templates/menu/stats.html',
+    })
+    .state('menu.today', {
+      url: '/stats/today',
+      templateUrl: 'templates/menu/stats/today.html',
+      controller : 'StatsCtrl'
     });
 
 	// if none of the above states are matched, use this as the fallback

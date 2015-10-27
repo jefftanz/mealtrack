@@ -7,15 +7,15 @@ app.filter("mealtime", function () {
 		}
 
 		/* hour is before noon */
-		if (date.getHours() < 12) {
+		if (date.getHours() < 11) {
 			return 'Breakfast'
 		}
 		else  /* Hour is from noon to 5pm (actually to 5:59 pm) */
-		if (date.getHours() >= 12 && date.getHours() <= 17) {
+		if (date.getHours() >= 11 && date.getHours() <= 15) {
 			return 'Lunch'
 		}
 		else  /* the hour is after 5pm, so it is between 6pm and midnight */
-		if (date.getHours() > 17 && date.getHours() <= 24) {
+		if (date.getHours() > 15 && date.getHours() <= 24) {
 			return 'Dinner'
 		}
 		else  /* the hour is not between 0 and 24, so something is wrong */

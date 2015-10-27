@@ -1,65 +1,36 @@
-<ion-view view-title="Edit Meal" >
+<ion-view view-title="Edit Item" >
 
   <!--<ion-nav-bar class="bar-stable">-->
     <!--<ion-nav-back-button></ion-nav-back-button>-->
   <!--</ion-nav-bar>-->
 
-	<ion-nav-buttons side="secondary" >
-			<button class="button button-icon ion-camera"
-			        ng-click="addPicture()" >
-			</button >
-	</ion-nav-buttons >
+	<!--<ion-nav-buttons side="secondary" >-->
+			<!--<button class="button button-icon ion-camera"-->
+			        <!--ng-click="addPicture()" >-->
+			<!--</button >-->
+	<!--</ion-nav-buttons >-->
 
 	<ion-content >
 		<form name="editForm"
 		      novalidate=""
 		      ng-submit="saveMeal(editForm)"
 		      class="create-form" >
+
 			<ion-list >
 
         <!-- Title -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.title.$invalid}" >
-          <span class="input-label" >Description</span >
-          <input type="text"
-                 placeholder="Description"
-                 name="title"
-                 ng-model="formData.title"
-                 ng-required="true" >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.title.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.title.$invalid}">
+          <span class="input-label">Description</span>
+          <input type="text" name="title" ng-model="formData.title">
+        </label>
+        <div class="form-errors" ng-messages="editForm.title.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
-
-        <!-- Category -->
-        <label class="item item-input item-select"
-               ng-class="{'has-error':editForm.category.$invalid}" >
-          <div class="input-label" >
-            Type
-          </div >
-          <select name="category"
-                  ng-model="formData.category"
-                  ng-required="true" >
-            <option selected
-                    value="" >Please Choose
-            </option >
-            <option value="snack" >Snack</option >
-            <option value="meal" >Meal</option >
-            <option value="drink" >Drink</option >
-          </select >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.category.$error">
-          <div ng-messages-include="templates/form-errors.html" > </div>
         </div >
 
         <!-- Food Group -->
         <label class="item item-input item-select"
                ng-class="{'has-error':editForm.group.$invalid}" >
-          <div class="input-label" >
-            Food Group
-          </div >
+          <div class="input-label" >Food Group</div >
           <select name="group"
                   ng-model="formData.group"
                   ng-required="true" >
@@ -79,167 +50,77 @@
         </div >
 
         <!-- Calories -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.calories.$invalid}" >
-					<span class="input-label" >Calories
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.calories}}cal</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.calories"
-                   name="calories"
-                   step="20"
-                   min="0"
-                   max="1000"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.calories.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.calories.$invalid}">
+          <span class="input-label">Calories</span>
+          <input type="number" name="calories" ng-model="formData.calories">
+        </label>
+        <div class="form-errors" ng-messages="editForm.calories.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Fat -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.fat.$invalid}" >
-					<span class="input-label" >Fat
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.fat}}g</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.fat"
-                   name="fat"
-                   step="1"
-                   min="0"
-                   max="50"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.fat.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.fat.$invalid}">
+          <span class="input-label">Fat</span>
+          <input type="number" name="fat" ng-model="formData.fat">
+        </label>
+        <div class="form-errors" ng-messages="editForm.fat.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Sodium -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.sodium.$invalid}" >
-					<span class="input-label" >Sodium
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.sodium}}mg</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.sodium"
-                   name="sodium"
-                   step="10"
-                   min="0"
-                   max="400"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.sodium.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.sodium.$invalid}">
+          <span class="input-label">Sodium</span>
+          <input type="number" name="sodium" ng-model="formData.sodium">
+        </label>
+        <div class="form-errors" ng-messages="editForm.sodium.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Carbs -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.carbs.$invalid}" >
-					<span class="input-label" >Carbs
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.carbs}}g</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.carbs"
-                   name="carbs"
-                   step="10"
-                   min="0"
-                   max="1000"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.carbs.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.carbs.$invalid}">
+          <span class="input-label">Carbs</span>
+          <input type="number" name="carbs" ng-model="formData.carbs">
+        </label>
+        <div class="form-errors" ng-messages="editForm.carbs.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Sugar -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.sugar.$invalid}" >
-					<span class="input-label" >Sugar
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.sugar}}g</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.sugar"
-                   name="sugar"
-                   step="10"
-                   min="0"
-                   max="300"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.sugar.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.sugar.$invalid}">
+          <span class="input-label">Sugar</span>
+          <input type="number" name="sugar" ng-model="formData.sugar">
+        </label>
+        <div class="form-errors" ng-messages="editForm.sugar.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Protein -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.protein.$invalid}" >
-					<span class="input-label" >Protein
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.protein}}g</span >
-
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.protein"
-                   name="protein"
-                   step="5"
-                   min="0"
-                   max="100"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.protein.$error">
+        <label class="item item-input" ng-class="{'has-error':editForm.protein.$invalid}">
+          <span class="input-label">Protein</span>
+          <input type="number" name="protein" ng-model="formData.protein">
+        </label>
+        <div class="form-errors" ng-messages="editForm.protein.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Fiber -->
-        <label class="item item-input item-stacked-label"
-               ng-class="{'has-error':editForm.fiber.$invalid}" >
-					<span class="input-label" >Fiber
-					</span >
-          <span style="float: right; padding-right: 15px;" >{{formData.fiber}}g</span >
+        <label class="item item-input" ng-class="{'has-error':editForm.fiber.$invalid}">
+          <span class="input-label">Fiber</span>
+          <input type="number" name="fiber" ng-model="formData.fiber">
 
-          <div class="range range-royal" >
-            <input type="range"
-                   ng-model="formData.fiber"
-                   name="fiber"
-                   step="1"
-                   min="0"
-                   max="50"
-                   value="0" >
-          </div >
-        </label >
-        <div class="form-errors"
-             ng-messages="editForm.fiber.$error">
+        </label>
+        <div class="form-errors" ng-messages="editForm.fiber.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
-			</ion-list >
+      </ion-list >
 
-			<div class="padding" ng-show="formData.picture">
-				<div class="picture">
-					<img ng-src="data:image/jpeg;base64,{{formData.picture}}"
-					     alt="" />
-				</div >
-			</div>
+			<!--<div class="padding" ng-show="formData.picture">-->
+				<!--<div class="picture">-->
+					<!--<img ng-src="data:image/jpeg;base64,{{formData.picture}}"-->
+					     <!--alt="" />-->
+				<!--</div >-->
+			<!--</div>-->
 
 			<div class="padding" >
 				<button class="button button-positive button-block"

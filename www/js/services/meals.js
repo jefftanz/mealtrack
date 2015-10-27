@@ -8,6 +8,8 @@ app.service("MealService", function ($q, AuthService) {
 		'isSaving': false,
 		'hasMore': true,
 		'results': [],
+    'selectedMeal': null,
+    'lastMealIdAdded': '',
 		'refresh': function () {
 			self.page = 0;
 			self.isLoading = false;
@@ -23,6 +25,8 @@ app.service("MealService", function ($q, AuthService) {
 		'load': function () {
 			self.isLoading = true;
 			var d = $q.defer();
+
+      console.log("loading meal service data");
 
 			// Initialise Query
 			var Meal = Parse.Object.extend("Meal");
@@ -40,19 +44,10 @@ app.service("MealService", function ($q, AuthService) {
 					angular.forEach(results, function (item) {
             //TODO Figure out why turning it into a Meal gets rid of the .id accessibility
 						//var meal = new Meal(item);
-
-            //console.log("item.id"+item.id);
-            //console.log("item.objectId"+item.objectId);
-            //console.log("item.get(id)"+item.get("id"));
-            //console.log("item.get(objectId)"+item.get("objectId"));
-            //console.log("item"+item);
-            //console.log("meal"+meal);
-            //console.log("Id : "+meal.id);
-            //console.log("get Id : "+meal.get("id"));
-            //console.log("objectId : "+meal.objectId);
-            //console.log("get objectId : "+meal.get("objectId"));
-
 						//self.results.push(meal);
+
+            console.log("item group:"+item.get("group"));
+
             self.results.push(item);
 
 					});
@@ -74,13 +69,16 @@ app.service("MealService", function ($q, AuthService) {
 			self.isSaving = true;
 			var d = $q.defer();
 
+      var iconName;
 			var Meal = Parse.Object.extend("Meal");
 			var user = AuthService.user;
-			var file = data.picture ? new Parse.File("photo.jpg", {base64: data.picture}) : null;
+			//var file = data.picture ? new Parse.File("photo.jpg", {base64: data.picture}) : null;
+      //var file = null; //new Parse.File('cow-icon.png', {base64: data.picture});
 
 			var meal = new Meal();
 			meal.set("owner", user);
-			meal.set("picture", file);
+			meal.set("picture", null);
+      //meal.set("picture", 'img/animals/puppy-icon.png');
 			meal.set("title", data.title);
 			meal.set("category", data.category);
 			meal.set("calories", parseInt(data.calories));
@@ -93,10 +91,26 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("group", data.group);
 			meal.set("created", new Date());
 
+      switch(data.group){
+        case "fruit": iconName = 'img/animals/cow-icon.png';break;
+        case "veggie": iconName = 'img/animals/frog-icon.png';break;
+        case "grain": iconName = 'img/animals/mouse-icon.png';break;
+        case "protein": iconName = 'img/animals/cow-icon.png';break;
+        case "fat": iconName = 'img/animals/pig-icon.png';break;
+        case "sugar": iconName = 'img/animals/puppy-icon.png';break;
+        case "oil": iconName = 'img/animals/puppy-icon.png';break;
+        case "dairy": iconName = 'img/animals/puppy-icon.png';break;
+        case "other": iconName = 'img/animals/puppy-icon.png';break;
+      }
+
+      meal.set("iconName", iconName);
+
 			meal.save(null, {
 				success: function (meal) {
 					console.log("Meal tracked");
 					self.results.unshift(meal);
+          console.log("new Meal Id "+meal.id);
+          self.lastMealIdAdded = meal.id;
 					d.resolve(meal);
 				},
 				error: function (item, error) {
@@ -114,6 +128,7 @@ app.service("MealService", function ($q, AuthService) {
       console.log("this.results.length : "+this.results.length);
       for (var i = 0; i < this.results.length; i++){
         if (this.results[i].id == mealId){
+          self.selectedMeal = this.results[i];
           return this.results[i];
           console.log("Found meal");
         }
@@ -125,6 +140,7 @@ app.service("MealService", function ($q, AuthService) {
       self.isSaving = true;
       var d = $q.defer();
 
+      var iconName;
       var Meal = Parse.Object.extend("Meal");
       var user = AuthService.user;
       //var file = formData.picture ? new Parse.File("photo.jpg", {base64: formData.picture}) : null;
@@ -147,6 +163,21 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("carbs", parseInt(formData.carbs));
       meal.set("fiber", parseInt(formData.fiber));
       meal.set("group", formData.group);
+      meal.set("picture", null);
+
+      switch(formData.group){
+        case "fruit": iconName = 'img/animals/cow-icon.png';break;
+        case "veggie": iconName = 'img/animals/frog-icon.png';break;
+        case "grain": iconName = 'img/animals/mouse-icon.png';break;
+        case "protein": iconName = 'img/animals/cow-icon.png';break;
+        case "fat": iconName = 'img/animals/pig-icon.png';break;
+        case "sugar": iconName = 'img/animals/puppy-icon.png';break;
+        case "oil": iconName = 'img/animals/puppy-icon.png';break;
+        case "dairy": iconName = 'img/animals/puppy-icon.png';break;
+        case "other": iconName = 'img/animals/puppy-icon.png';break;
+      }
+
+      meal.set("iconName", iconName);
 
       meal.save(null, {
         success: function (meal) {
