@@ -1,8 +1,8 @@
 <ion-view view-title="Meals" >
 
   <ion-nav-buttons side="secondary" >
-    <button class="button button-clear"
-            ng-click="addMeal()" >Add
+    <button class="button button-clear button-icon ion-android-add-circle"
+            ng-click="addMeal()" >
     </button >
   </ion-nav-buttons >
 
@@ -14,29 +14,37 @@
 		</ion-refresher >
 
     <!-- make this an ion-list? -->
-		<div class="list card item-card"
-		     >
-
-      <ion-item class="item"
+		<div class="list">
+      <a class="item item-thumbnail-left"
            href="#/menu/edit/{{meal.id}}"
            ng-repeat="meal in meals.results">
         <!--ng-click="editMeal(meal.id)"-->
-        <div class="item" >
-          <h2 >{{meal.id}}</h2 >
+        <div style="vertical-align: middle;" >
+
+          <img ng-src="{{meal.attributes.picture.url()}}"
+               ng-if="meal.attributes.picture" >
+
+          <!--<h2 >{{meal.id}}</h2 >-->
           <h2 >{{meal.attributes.title}}</h2 >
+          <h2> #{{meal.attributes.category|lowercase}} </h2>
           <p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
-        </div >
 
-        <div class="item item-image"
-             ng-if="meal.attributes.picture" >
-          <img ng-src="{{meal.attributes.picture.url()}}" >
+          <span>{{meal.attributes.calories}}cal, </span >
+          <span>{{meal.attributes.carbs}}g carbs, </span >
+          <span class="calories" >{{meal.attributes.fat}}g fat, </span >
+          <span class="calories" >{{meal.attributes.protein}}g protein, </span >
+          <span class="calories" >{{meal.attributes.sugar}}g sugar</span >
         </div >
+        <!--<div class="item item-image"-->
+             <!--ng-if="meal.attributes.picture" >-->
+          <!--<img ng-src="{{meal.attributes.picture.url()}}" >-->
+        <!--</div >-->
 
-        <div class="item " >
-          <span class="category" >#{{meal.attributes.category|lowercase}}</span >
-          <span class="calories" >{{meal.attributes.calories}}cal</span >
-        </div >
-      </ion-item>
+        <!--<div class="item " >-->
+          <!--<span class="category" >#{{meal.attributes.category|lowercase}}</span >-->
+          <!--<span class="calories" >{{meal.attributes.calories}}cal</span >-->
+        <!--</div >-->
+      </a>
 
 
 		</div >

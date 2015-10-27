@@ -54,12 +54,36 @@
 				     <div ng-messages-include="templates/form-errors.html" > </div>
 				</div >
 
-				<!-- Price -->
+        <!-- Food Group -->
+        <label class="item item-input item-select"
+               ng-class="{'has-error':createForm.group.$invalid}" >
+          <div class="input-label" >
+            Food Group
+          </div >
+          <select name="group"
+                  ng-model="formData.group"
+                  ng-required="true" >
+            <option selected value="" >Please Choose</option >
+            <option value="fruit" >Fruit</option >
+            <option value="veggie" >Veggie</option >
+            <option value="grain" >Grain</option >
+            <option value="protein" >Protein</option >
+            <option value="dairy" >Dairy</option >
+            <option value="oil" >Oil</option >
+            <option value="other" >Other</option >
+          </select >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.group.$error">
+          <div ng-messages-include="templates/form-errors.html" > </div>
+        </div >
+
+				<!-- Calories -->
 				<label class="item item-input item-stacked-label"
-				       ng-class="{'has-error':createForm.price.$invalid}" >
+				       ng-class="{'has-error':createForm.calories.$invalid}" >
 					<span class="input-label" >Calories
 					</span >
-					<span class="calories" >{{formData.calories}}cal</span >
+					<span style="float: right; padding-right: 15px;" >{{formData.calories}}cal</span >
 
 					<div class="range range-royal" >
 						<input type="range"
@@ -68,13 +92,146 @@
 						       step="20"
 						       min="0"
 						       max="1000"
-						       value="150" >
+						       value="0" >
 					</div >
 				</label >
 				<div class="form-errors"
 				     ng-messages="createForm.calories.$error">
 				     <div ng-messages-include="templates/form-errors.html" ></div>
 				</div >
+
+        <!-- Fat -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.fat.$invalid}" >
+					<span class="input-label" >Fat
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.fat}}g</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.fat"
+                   name="fat"
+                   step="1"
+                   min="0"
+                   max="50"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.fat.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
+        <!-- Sodium -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.sodium.$invalid}" >
+					<span class="input-label" >Sodium
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.sodium}}mg</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.sodium"
+                   name="sodium"
+                   step="10"
+                   min="0"
+                   max="400"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.sodium.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
+        <!-- Carbs -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.carbs.$invalid}" >
+					<span class="input-label" >Carbs
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.carbs}}g</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.carbs"
+                   name="carbs"
+                   step="10"
+                   min="0"
+                   max="1000"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.carbs.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
+        <!-- Sugar -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.sugar.$invalid}" >
+					<span class="input-label" >Sugar
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.sugar}}g</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.sugar"
+                   name="sugar"
+                   step="10"
+                   min="0"
+                   max="300"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.sugar.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
+        <!-- Protein -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.protein.$invalid}" >
+					<span class="input-label" >Protein
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.protein}}g</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.protein"
+                   name="protein"
+                   step="5"
+                   min="0"
+                   max="100"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.protein.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
+        <!-- Fiber -->
+        <label class="item item-input item-stacked-label"
+               ng-class="{'has-error':createForm.fiber.$invalid}" >
+					<span class="input-label" >Fiber
+					</span >
+          <span style="float: right; padding-right: 15px;" >{{formData.fiber}}g</span >
+
+          <div class="range range-royal" >
+            <input type="range"
+                   ng-model="formData.fiber"
+                   name="fiber"
+                   step="1"
+                   min="0"
+                   max="50"
+                   value="0" >
+          </div >
+        </label >
+        <div class="form-errors"
+             ng-messages="createForm.fiber.$error">
+          <div ng-messages-include="templates/form-errors.html" ></div>
+        </div >
+
 			</ion-list >
 
 			<div class="padding" ng-show="formData.picture">
@@ -83,8 +240,6 @@
 					     alt="" />
 				</div >
 			</div>
-
-
 
 			<div class="padding" >
 				<button class="button button-positive button-block"

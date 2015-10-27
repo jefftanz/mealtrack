@@ -59,7 +59,14 @@ app.controller('MealCreateCtrl', function ($scope,
 		$scope.formData = {
 			'title': '',
 			'category': '',
-			'calories': 29,
+			'calories': 0,
+      'fat': 0,
+      'sodium': 0,
+      'carbs': 0,
+      'sugar': 0,
+      'protein': 0,
+      'fiber': 0,
+      'group' : '',
 			'picture': null
 		};
 	};
@@ -127,6 +134,13 @@ app.controller('MealEditCtrl', function ($scope,
       'title': meal.get("title"),
       'category': meal.get("category"),
       'calories': parseInt(meal.get("calories")),
+      'fat': parseInt(meal.get("fat")),
+      'sodium': parseInt(meal.get("sodium")),
+      'carbs': parseInt(meal.get("carbs")),
+      'sugar': parseInt(meal.get("sugar")),
+      'protein': parseInt(meal.get("protein")),
+      'fiber': parseInt(meal.get("fiber")),
+      'group' : meal.get("group"),
       'picture': null
     };
   };
@@ -135,7 +149,14 @@ app.controller('MealEditCtrl', function ($scope,
     $scope.formData = {
       'title': '',
       'category': '',
-      'calories': 29,
+      'calories': 0,
+      'fat': 0,
+      'sodium': 0,
+      'carbs': 0,
+      'sugar': 0,
+      'protein': 0,
+      'fiber': 0,
+      'group' : '',
       'picture': null
     };
   };

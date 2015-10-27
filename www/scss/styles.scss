@@ -1,5 +1,17 @@
 .create-form {
-  .calories {
+  .my-unit-field {
+    float: right;
+    margin-right: $content-padding;
+  }
+  .picture {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.edit-form {
+  .my-unit-field {
     float: right;
     margin-right: $content-padding;
   }

@@ -30,7 +30,7 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>", "<KEY>");
+		Parse.initialize("<KEY>","<KEY>");
 });
 
 app.run(function ($ionicPlatform, $ionicAnalytics){
@@ -126,7 +126,39 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			url: '/account',
       templateUrl: 'templates/menu/account.html',
       controller : 'AccountCtrl'
-		});
+		})
+    .state('menu.groups', {
+      url: '/groups',
+      templateUrl: 'templates/menu/groups.html',
+    })
+    .state('menu.dairy', {
+      url: '/group/dairy',
+      templateUrl: 'templates/menu/group/group-dairy.html',
+    })
+    .state('menu.fruit', {
+      url: '/group/fruit',
+      templateUrl: 'templates/menu/group/group-fruit.html',
+    })
+    .state('menu.grain', {
+      url: '/group/grain',
+      templateUrl: 'templates/menu/group/group-grain.html',
+      controller : ''
+    })
+    .state('menu.oil', {
+      url: '/group/oil',
+      templateUrl: 'templates/menu/group/group-oil.html',
+      controller : ''
+    })
+    .state('menu.protein', {
+      url: '/group/protein',
+      templateUrl: 'templates/menu/group/group-protein.html',
+      controller : ''
+    })
+    .state('menu.vegatable', {
+      url: '/group/vegatable',
+      templateUrl: 'templates/menu/group/group-vegatable.html',
+      controller : ''
+    });
 
 	// if none of the above states are matched, use this as the fallback
 	$urlRouterProvider.otherwise('/intro');

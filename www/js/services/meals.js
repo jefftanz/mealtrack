@@ -84,6 +84,13 @@ app.service("MealService", function ($q, AuthService) {
 			meal.set("title", data.title);
 			meal.set("category", data.category);
 			meal.set("calories", parseInt(data.calories));
+      meal.set("fat", parseInt(data.fat));
+      meal.set("sodium", parseInt(data.sodium));
+      meal.set("sugar", parseInt(data.sugar));
+      meal.set("protein", parseInt(data.protein));
+      meal.set("carbs", parseInt(data.carbs));
+      meal.set("fiber", parseInt(data.fiber));
+      meal.set("group", data.group);
 			meal.set("created", new Date());
 
 			meal.save(null, {
@@ -133,6 +140,13 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("title", formData.title);
       meal.set("category", formData.category);
       meal.set("calories", parseInt(formData.calories));
+      meal.set("fat", parseInt(formData.fat));
+      meal.set("sodium", parseInt(formData.sodium));
+      meal.set("sugar", parseInt(formData.sugar));
+      meal.set("protein", parseInt(formData.protein));
+      meal.set("carbs", parseInt(formData.carbs));
+      meal.set("fiber", parseInt(formData.fiber));
+      meal.set("group", formData.group);
 
       meal.save(null, {
         success: function (meal) {
