@@ -91,16 +91,17 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("group", data.group);
 			meal.set("created", new Date());
 
+      // case "fat": iconName = 'img/animals/pig-icon.png';break;
+      // case "sugar": iconName = 'img/animals/puppy-icon.png';break;
+
       switch(data.group){
-        case "fruit": iconName = 'img/animals/cow-icon.png';break;
-        case "veggie": iconName = 'img/animals/frog-icon.png';break;
-        case "grain": iconName = 'img/animals/mouse-icon.png';break;
-        case "protein": iconName = 'img/animals/cow-icon.png';break;
-        case "fat": iconName = 'img/animals/pig-icon.png';break;
-        case "sugar": iconName = 'img/animals/puppy-icon.png';break;
-        case "oil": iconName = 'img/animals/puppy-icon.png';break;
-        case "dairy": iconName = 'img/animals/puppy-icon.png';break;
-        case "other": iconName = 'img/animals/puppy-icon.png';break;
+        case "fruit": iconName = 'img/food/fruit-icon.png';break;
+        case "veggie": iconName = 'img/food/veggie-icon.png';break;
+        case "grain": iconName = 'img/food/grain-icon.png';break;
+        case "protein": iconName = 'img/food/meat-icon.png';break;
+        case "oil": iconName = 'img/food/oil-icon.png';break;
+        case "dairy": iconName = 'img/food/dairy-icon.png';break;
+        case "other": iconName = 'img/food/question-icon.png';break;
       }
 
       meal.set("iconName", iconName);
@@ -165,16 +166,17 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("group", formData.group);
       meal.set("picture", null);
 
+      //case "fat": iconName = 'img/animals/pig-icon.png';break;
+      //case "sugar": iconName = 'img/animals/puppy-icon.png';break;
+
       switch(formData.group){
-        case "fruit": iconName = 'img/animals/cow-icon.png';break;
-        case "veggie": iconName = 'img/animals/frog-icon.png';break;
-        case "grain": iconName = 'img/animals/mouse-icon.png';break;
-        case "protein": iconName = 'img/animals/cow-icon.png';break;
-        case "fat": iconName = 'img/animals/pig-icon.png';break;
-        case "sugar": iconName = 'img/animals/puppy-icon.png';break;
-        case "oil": iconName = 'img/animals/puppy-icon.png';break;
-        case "dairy": iconName = 'img/animals/puppy-icon.png';break;
-        case "other": iconName = 'img/animals/puppy-icon.png';break;
+        case "fruit": iconName = 'img/food/fruit-icon.png';break;
+        case "veggie": iconName = 'img/food/veggie-icon.png';break;
+        case "grain": iconName = 'img/food/grain-icon.png';break;
+        case "protein": iconName = 'img/food/meat-icon.png';break;
+        case "oil": iconName = 'img/food/oil-icon.png';break;
+        case "dairy": iconName = 'img/food/dairy-icon.png';break;
+        case "other": iconName = 'img/food/other-icon.png';break;
       }
 
       meal.set("iconName", iconName);

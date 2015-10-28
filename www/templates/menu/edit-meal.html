@@ -21,7 +21,8 @@
         <!-- Title -->
         <label class="item item-input" ng-class="{'has-error':editForm.title.$invalid}">
           <span class="input-label">Description</span>
-          <input type="text" name="title" ng-model="formData.title">
+          <input id="txtTitle" onClick="SelectAll('txtTitle');"
+            type="text" name="title" ng-model="formData.title">
         </label>
         <div class="form-errors" ng-messages="editForm.title.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>

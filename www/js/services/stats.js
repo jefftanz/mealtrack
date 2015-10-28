@@ -16,6 +16,18 @@ app.service("StatsService", function ($q, AuthService) {
       self.isLoading = true;
       var d = $q.defer();
 
+      //clear the results
+      self.results = [];
+      self.total_calories = 0;
+      self.total_carbs = 0;
+      self.total_fat = 0;
+      self.total_fiber = 0;
+      self.total_protein = 0;
+      self.total_sodium = 0;
+      self.total_sugar = 0;
+
+      console.log("getTodaysItems - query");
+
       // Initialise Query
       var Meal = Parse.Object.extend("Meal");
       var mealItemQuery = new Parse.Query(Meal);
