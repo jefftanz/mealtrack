@@ -32,7 +32,7 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>","KEY");
+		Parse.initialize("<KEY>","<KEY>");
 });
 
 app.run(function ($ionicPlatform, $ionicAnalytics){
