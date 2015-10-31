@@ -59,6 +59,8 @@ app.service('AuthService', function ($q, $ionicPopup) {
 			user.set("username", data.email);
 			user.set("name", data.name);
 			user.set("email", data.email);
+      user.set("age", data.age);
+      user.set("gender", data.gender);
 
 			user.save(null, {
 				success: function (user) {

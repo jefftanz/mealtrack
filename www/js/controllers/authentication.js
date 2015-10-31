@@ -39,8 +39,8 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
 		if (form.$valid) {
 			console.log("SignupCtrl::signup");
 			AuthService.signup($scope.formData.email,
-				$scope.formData.name,
-				$scope.formData.password)
+                         $scope.formData.name,
+                         $scope.formData.password)
 				.then(function () {
 					$state.go("menu.meals")
 				});

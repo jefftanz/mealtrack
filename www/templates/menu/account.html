@@ -10,43 +10,107 @@
 
 	<ion-content padding="true"
 	             scroll="false" >
-		<form name="signupForm"
+		<form name="accountForm"
+          id="myform"
 		      novalidate=""
-		      ng-submit="submit(signupForm)" >
-			<ion-list >
+		      ng-submit="submit(accountForm)" >
 
-				<label class="item item-input item-floating-label"
-				       ng-class="{'has-error':signupForm.name.$invalid}" >
-					<span class="input-label" >Name</span >
-					<input type="text"
-					       placeholder="Name"
-					       name="name"
-					       ng-model="formData.name"
-					       ng-required="true" >
-				</label >
-				<div class="form-errors"
-				     ng-messages="signupForm.name.$error">
-				     <div ng-messages-include="templates/form-errors.html" ></div>
-				</div >
+      <ion-list >
+        <ion-item>
+          <table style="table-layout: fixed; width: 100%; height: 10%;">
+            <tr>
+              <td>Name : </td>
+              <td>{{formData.name}}</td>
+            </tr>
+          </table>
+        </ion-item>
 
-				<label class="item item-input item-floating-label"
-				       ng-class="{'has-error':signupForm.email.$invalid}" >
-					<span class="input-label" >Email</span >
-					<input type="email"
-					       placeholder="Email"
-					       name="email"
-					       ng-model="formData.email"
-					       ng-required="true" >
-				</label >
-				<div class="form-errors"
-				     ng-messages="signupForm.email.$error">
-				     <div ng-messages-include="templates/form-errors.html" ></div>
-				</div >
+        <ion-item>
+          <table style="table-layout: fixed; width: 100%; height: 10%;">
+            <tr>
+              <td>Email : </td>
+              <td>{{formData.email}}</td>
+            </tr>
+          </table>
+        </ion-item>
+
+				<!--<label class="item item-input item-floating-label"-->
+				       <!--ng-class="{'has-error':accountForm.name.$invalid}" >-->
+					<!--<span class="input-label" >Name</span >-->
+					<!--<input type="text"-->
+					       <!--placeholder="Name"-->
+					       <!--name="name"-->
+					       <!--ng-model="formData.name"-->
+					       <!--ng-required="true" >-->
+				<!--</label >-->
+				<!--<div class="form-errors"-->
+				     <!--ng-messages="accountForm.name.$error">-->
+				     <!--<div ng-messages-include="templates/form-errors.html" ></div>-->
+				<!--</div >-->
+
+				<!--<label class="item item-input item-floating-label"-->
+				       <!--ng-class="{'has-error':accountForm.email.$invalid}" >-->
+					<!--<span class="input-label" >Email</span >-->
+					<!--<input type="email"-->
+					       <!--placeholder="Email"-->
+					       <!--name="email"-->
+					       <!--ng-model="formData.email"-->
+					       <!--ng-required="true" >-->
+				<!--</label >-->
+				<!--<div class="form-errors"-->
+				     <!--ng-messages="accountForm.email.$error">-->
+				     <!--<div ng-messages-include="templates/form-errors.html" ></div>-->
+				<!--</div >-->
+
+        <!-- Age -->
+        <label class="item item-input item-select"
+               ng-class="{'has-error':accountForm.age.$invalid}" >
+          <div class="input-label" >Age</div >
+          <select name="group"
+                  ng-model="formData.age"
+                  ng-required="true" >
+            <option selected value="" >Please Choose</option >
+            <option value="0" >19 - 30</option >
+            <option value="1" >31 - 50</option >
+            <option value="2" >51+</option >
+          </select >
+        </label >
+        <div class="form-errors"
+             ng-messages="accountForm.group.$error">
+          <div ng-messages-include="templates/form-errors.html" > </div>
+        </div >
+
+        <!-- Gender -->
+        <label class="item item-input item-select"
+               ng-class="{'has-error':accountForm.gender.$invalid}" >
+          <div class="input-label" >Gender</div >
+          <select name="group"
+                  ng-model="formData.gender"
+                  ng-required="true" >
+            <option selected value="" >Please Choose</option >
+            <option value="0" >Male</option >
+            <option value="1" >Female</option >
+          </select >
+        </label >
+        <div class="form-errors"
+             ng-messages="accountForm.gender.$error">
+          <div ng-messages-include="templates/form-errors.html" > </div>
+        </div >
 
 			</ion-list >
-			<button class="button button-royal button-block"
-			        type="submit" >Save
-			</button >
+
+			<!--<button class="button button-royal button-block"-->
+			        <!--type="submit" >Save-->
+			<!--</button >-->
+
 		</form >
 	</ion-content >
+
+  <div class="bar bar-footer">
+    <button class="button button-positive button-block"
+            type="submit"
+            form="myform">Save</button>
+  </div>
+
+
 </ion-view >

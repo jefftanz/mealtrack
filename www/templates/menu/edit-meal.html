@@ -12,6 +12,7 @@
 
 	<ion-content >
 		<form name="editForm"
+          id="myform"
 		      novalidate=""
 		      ng-submit="saveMeal(editForm)"
 		      class="create-form" >
@@ -123,11 +124,21 @@
 				<!--</div >-->
 			<!--</div>-->
 
-			<div class="padding" >
-				<button class="button button-positive button-block"
-				        type="submit" >Save
-				</button >
-			</div >
+			<!--<div class="padding" >-->
+				<!--<button class="button button-positive button-block"-->
+				        <!--type="submit" >Save-->
+				<!--</button >-->
+			<!--</div >-->
+
 		</form >
 	</ion-content >
+
+  <div class="bar bar-footer">
+    <button class="button button-positive button-block"
+            type="submit"
+            form="myform">Save</button>
+  </div>
+
+
+
 </ion-view >
