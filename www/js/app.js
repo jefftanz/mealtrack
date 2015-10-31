@@ -105,6 +105,50 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       url: '/settings',
       templateUrl: 'templates/menu/settings.html'
     })
+    .state('menu.goals', {
+      url: '/goals',
+      abstract: true,
+      templateUrl: 'templates/menu/goals.html'
+    })
+    .state('menu.goals.daily', {
+      url: '/daily',
+      views: {
+        'goal-daily': {
+          templateUrl: 'templates/menu/goal/goal-daily.html',
+        }
+      }
+    })
+    .state('menu.goals.weekly', {
+      url: '/weekly',
+      views: {
+        'goal-weekly': {
+          templateUrl: 'templates/menu/goal/goal-weekly.html',
+        }
+      }
+    })
+    //.state('menu.goals', {
+    //  url: '/goals',
+    //  abstract: true,
+    //  templateUrl: 'templates/menu/goals.html'
+    //})
+    //.state('menu.goal.daily', {
+    //  url: '/daily',
+    //  parent: 'menu.goals',
+    //  views: {
+    //    'goal-daily': {
+    //      templateUrl: 'templates/menu/goal/goal-daily.html'
+    //    }
+    //  }
+    //})
+    //.state('menu.goal.weekly', {
+    //  url: '/weekly',
+    //  parent: 'menu.goals',
+    //  views: {
+    //    'goal-weekly': {
+    //      templateUrl: 'templates/menu/goal/goal-weekly.html'
+    //    }
+    //  }
+    //})
     .state('menu.meals', {
       url: '/meals',
       templateUrl: 'templates/menu/meals.html',
