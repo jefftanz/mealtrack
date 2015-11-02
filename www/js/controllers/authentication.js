@@ -42,6 +42,8 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
                          $scope.formData.name,
                          $scope.formData.password)
 				.then(function () {
+          //TODO call another function to add defaults based off of the users gender and age
+          //  Don't let the user sign up unless they provide that data.
 					$state.go("menu.meals")
 				});
 		}
