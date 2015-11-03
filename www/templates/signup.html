@@ -11,6 +11,7 @@
 		      ng-submit="signup(signupForm)" >
 			<ion-list >
 
+        <!-- Name -->
 				<label class="item item-input item-floating-label"
 				       ng-class="{'has-error':signupForm.name.$invalid}" >
 					<span class="input-label" >Name</span >
@@ -25,6 +26,42 @@
 				     <div ng-messages-include="templates/form-errors.html" > </div>
 				</div >
 
+        <!-- Age -->
+        <label class="item item-input item-select"
+               ng-class="{'has-error':signupForm.age.$invalid}" >
+          <div class="input-label" >Age</div >
+          <select name="group"
+                  ng-model="formData.age"
+                  ng-required="true" >
+            <option selected value="" >Please Choose</option >
+            <option value="0" >19 - 30</option >
+            <option value="1" >31 - 50</option >
+            <option value="2" >51+</option >
+          </select >
+        </label >
+        <div class="form-errors"
+             ng-messages="signupForm.group.$error">
+          <div ng-messages-include="templates/form-errors.html" > </div>
+        </div >
+
+        <!-- Gender -->
+        <label class="item item-input item-select"
+               ng-class="{'has-error':signupForm.gender.$invalid}" >
+          <div class="input-label" >Gender</div >
+          <select name="group"
+                  ng-model="formData.gender"
+                  ng-required="true" >
+            <option selected value="" >Please Choose</option >
+            <option value="0" >Male</option >
+            <option value="1" >Female</option >
+          </select >
+        </label >
+        <div class="form-errors"
+             ng-messages="signupForm.gender.$error">
+          <div ng-messages-include="templates/form-errors.html" > </div>
+        </div >
+
+        <!-- Email -->
 				<label class="item item-input item-floating-label"
 				       ng-class="{'has-error':signupForm.email.$invalid}" >
 					<span class="input-label" >Email</span >
@@ -39,7 +76,7 @@
 				     <div ng-messages-include="templates/form-errors.html" > </div>
 				</div >
 
-
+        <!-- Password -->
 				<label class="item item-input item-floating-label"
 				       ng-class="{'has-error':signupForm.password.$invalid}" >
 					<span class="input-label" >Password</span >

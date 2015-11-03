@@ -1,6 +1,4 @@
-< view-title="Daily Goals">
-
-
+<ion-view view-title="Daily Goals">
 
   <ion-content class="padding">
     <form name="dailyGoalForm"
@@ -90,9 +88,9 @@
         </ion-item>
 
         <!-- Vegetable -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.vegatable.$invalid}">
+        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.vegetable.$invalid}">
           <span class="input-label">Vegetables</span>
-          <input type="number" name="vegetable" ng-model="formData.vegatable">
+          <input type="number" name="vegetable" ng-model="formData.vegetable">
         </label>
 
         <!-- Grain -->
@@ -108,9 +106,9 @@
         </label>
 
         <!-- Protein -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.protein.$invalid}">
+        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.proteinG.$invalid}">
           <span class="input-label">Protein</span>
-          <input type="number" name="protein" ng-model="formData.protein">
+          <input type="number" name="protein" ng-model="formData.proteinG">
         </label>
 
         <!-- Dairy -->

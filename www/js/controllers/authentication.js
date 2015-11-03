@@ -32,7 +32,9 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
 	$scope.formData = {
 		"name": "",
 		"email": "",
-		"password": ""
+		"password": "",
+    "age": "",
+    "gender": ""
 	};
 
 	$scope.signup = function (form) {
@@ -40,11 +42,15 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
 			console.log("SignupCtrl::signup");
 			AuthService.signup($scope.formData.email,
                          $scope.formData.name,
-                         $scope.formData.password)
+                         $scope.formData.password,
+                         $scope.formData.age,
+                         $scope.formData.gender)
 				.then(function () {
-          //TODO call another function to add defaults based off of the users gender and age
-          //  Don't let the user sign up unless they provide that data.
-					$state.go("menu.meals")
+          //  Set default values after user creation.
+          AuthService.setGoalDefaults()
+            .then(function () {
+              $state.go("menu.meals")
+            });
 				});
 		}
 	};

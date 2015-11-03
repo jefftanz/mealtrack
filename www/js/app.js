@@ -12,9 +12,11 @@ var app = angular.module('mealtrack', [
 	'mealtrack.controllers.meals',
 	'mealtrack.controllers.account',
   'mealtrack.controllers.stats',
+  'mealtrack.controllers.goals',
 	'mealtrack.services.authentication',
 	'mealtrack.services.meals',
   'mealtrack.services.stats',
+  'mealtrack.services.goals',
 	'mealtrack.filters.mealtime'
 ]);
 
@@ -115,6 +117,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       views: {
         'goal-daily': {
           templateUrl: 'templates/menu/goal/goal-daily.html',
+          controller : 'GoalsCtrl'
         }
       }
     })

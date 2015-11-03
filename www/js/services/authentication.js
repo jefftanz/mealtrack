@@ -24,7 +24,7 @@ app.service('AuthService', function ($q, $ionicPopup) {
 
 			return d.promise;
 		},
-		signup: function (email, name, password) {
+		signup: function (email, name, password, age, gender) {
 			var d = $q.defer();
 
 			var user = new Parse.User();
@@ -32,6 +32,10 @@ app.service('AuthService', function ($q, $ionicPopup) {
 			user.set('name',name);
 			user.set('password',password);
 			user.set('email',email);
+      user.set("age", age);
+      user.set("gender", gender);
+
+      console.log("signup user - Age: "+age +" gender: "+ gender);
 
 			user.signUp(null,{
 				success: function (user) {
@@ -62,6 +66,8 @@ app.service('AuthService', function ($q, $ionicPopup) {
       user.set("age", data.age);
       user.set("gender", data.gender);
 
+      console.log("update user info - Age: "+data.age +" gender: "+ data.gender);
+
 			user.save(null, {
 				success: function (user) {
 					self.user = user;
@@ -78,6 +84,130 @@ app.service('AuthService', function ($q, $ionicPopup) {
 
 			return d.promise;
 		},
+    setGoalDefaults: function () {
+      var d = $q.defer();
+      var user = self.user;
+      var gender = parseInt(self.user.get("gender"));
+      var age = parseInt(self.user.get("age"));
+
+      console.log("user gender: "+gender);
+      console.log("user age: "+age);
+
+      var vegetable = 0;
+      var protein = 0;
+      var oil = 0;
+      var grain = 0;
+      var fruit = 0;
+      var dairy = 0;
+
+      //Male
+      if (gender == 0){
+
+        switch(age){
+          //19 - 30
+          case 0 :
+            vegetable = 3;
+            fruit = 2;
+            protein = 6.5;
+            oil = 7;
+            grain = 8;
+            dairy = 3;
+            break;
+
+          // 31 - 50
+          case 1 :
+            vegetable = 3;
+            fruit = 2;
+            protein = 6;
+            oil = 6;
+            grain = 7;
+            dairy = 3;
+            break;
+
+          // 51+
+          case 2 :
+            vegetable = 2.5;
+            fruit = 2;
+            protein = 5.5;
+            oil = 6;
+            grain = 6;
+            dairy = 3;
+            break;
+        }
+        //Female
+      }else if(gender == 1){
+
+        switch(age){
+          //19 - 30
+          case 0 :
+            vegetable = 2.5;
+            fruit = 2;
+            protein = 5.5;
+            oil = 6;
+            grain = 6;
+            dairy = 3;
+            break;
+
+          // 31 - 50
+          case 1 :
+            vegetable = 2.5;
+            fruit = 1.5;
+            protein = 5;
+            oil = 5;
+            grain = 6;
+            dairy = 3;
+            break;
+
+          // 51+
+          case 2 :
+            vegetable = 2;
+            fruit = 1.5;
+            protein = 5;
+            oil = 5;
+            grain = 5;
+            dairy = 3;
+            break;
+        }
+      }
+
+      var DailyGoal = Parse.Object.extend("DailyGoal");
+      var goals = new DailyGoal();
+      goals.set("owner", user);
+
+      //Food Groups
+      goals.set("vegetable", vegetable);
+      goals.set("fruit", fruit);
+      goals.set("proteinG", protein);
+      goals.set("oil", oil);
+      goals.set("dairy", dairy);
+      goals.set("grain", grain);
+
+      //Avg 2000 Calorie Diet
+      goals.set("calories", 2000);
+      goals.set("protein", 50);
+      goals.set("fat", 70);
+      goals.set("carbs", 310);
+      goals.set("sugar", 90);
+      goals.set("sodium", 2300);
+      goals.set("fiber", 30);
+
+      goals.save(null, {
+        success: function (goals) {
+          console.log("Goals Default values set");
+          console.log("new Goals Id "+goals.id);
+          d.resolve(goals);
+        },
+        error: function (item, error) {
+          $ionicPopup.alert({
+            title: "Error saving goals",
+            subTitle: error.message
+          });
+          d.reject(error);
+        }
+      });
+
+      return d.promise;
+    },
     'registerUser': function() {
       // kick off the platform web client
       Ionic.io();

@@ -19,7 +19,7 @@ app.controller('AccountCtrl', function ($scope, $state, $ionicPopup, AuthService
 				//$state.go("menu.meals");
 
         var alertPopup = $ionicPopup.alert({
-          title: 'Account uddated!'
+          title: 'Account updated!'
         });
         alertPopup.then(function(res) {
           console.log('User data updated.');
