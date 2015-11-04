@@ -35,7 +35,7 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, GoalsServic
   $scope.saveDailyGoals = function(form){
     console.log("MealEditCtrl::saveMeal");
     $ionicLoading.show();
-    ''
+
     GoalsService.updateUserGoals($scope.formData, $scope.id).then(function () {
       //TODO send a ionic popup message to user saying daily goals have been saved?
       //  Do I display the weekly goals after saving daily or stay on same page?
