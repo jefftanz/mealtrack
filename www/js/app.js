@@ -34,7 +34,7 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<TAG>","<TAG>");
+		Parse.initialize("<KEY>","<KEY>");
 });
 
 app.run(function ($ionicPlatform, $ionicAnalytics){
@@ -126,6 +126,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       views: {
         'goal-weekly': {
           templateUrl: 'templates/menu/goal/goal-weekly.html',
+          controller : 'GoalsCtrl'
         }
       }
     })

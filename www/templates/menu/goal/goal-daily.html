@@ -1,12 +1,6 @@
 <ion-view view-title="Daily Goals">
 
   <ion-content class="padding">
-    <form name="dailyGoalForm"
-          id="myform"
-          novalidate=""
-          ng-submit="saveDailyGoals(dailyGoalForm)"
-          class="create-form" >
-
       <ion-list>
 
         <ion-item>
@@ -16,68 +10,47 @@
         </ion-item>
 
         <!-- Calories -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.calories.$invalid}">
-          <span class="input-label">Calories</span>
-          <input type="number" name="calories" ng-model="formData.calories">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.calories.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">Calories</div>
+          <div class="col">{{daily.calories}}</div>
+        </div>
 
         <!-- Fat -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.fat.$invalid}">
-          <span class="input-label">Fat</span>
-          <input type="number" name="fat" ng-model="formData.fat">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.fat.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">Fat</div>
+          <div class="col">{{daily.fat}} g</div>
+        </div>
 
         <!-- Sodium -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.sodium.$invalid}">
-          <span class="input-label">Sodium</span>
-          <input type="number" name="sodium" ng-model="formData.sodium">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.sodium.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">Sodium</div>
+          <div class="col">{{daily.sodium}} mg</div>
+        </div>
 
         <!-- Carbs -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.carbs.$invalid}">
-          <span class="input-label">Carbs</span>
-          <input type="number" name="carbs" ng-model="formData.carbs">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.carbs.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">Carbs</div>
+          <div class="col">{{daily.carbs}} g</div>
+        </div>
 
         <!-- Sugar -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.sugar.$invalid}">
-          <span class="input-label">Sugar</span>
-          <input type="number" name="sugar" ng-model="formData.sugar">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.sugar.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">sugar</div>
+          <div class="col">{{daily.sugar}} g</div>
+        </div>
 
         <!-- Protein -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.protein.$invalid}">
-          <span class="input-label">Protein</span>
-          <input type="number" name="protein" ng-model="formData.protein">
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.protein.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
+        <div class="row item">
+          <div class="col">Protein</div>
+          <div class="col">{{daily.protein}} g</div>
+        </div>
 
         <!-- Fiber -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.fiber.$invalid}">
-          <span class="input-label">Fiber</span>
-          <input type="number" name="fiber" ng-model="formData.fiber">
+        <div class="row item">
+          <div class="col">Fiber</div>
+          <div class="col">{{daily.fiber}} g</div>
+        </div>
 
-        </label>
-        <div class="form-errors" ng-messages="dailyGoalForm.fiber.$error">
-          <div ng-messages-include="templates/form-errors.html" ></div>
-        </div >
 
         <br>
 
@@ -88,43 +61,42 @@
         </ion-item>
 
         <!-- Vegetable -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.vegetable.$invalid}">
-          <span class="input-label">Vegetables</span>
-          <input type="number" name="vegetable" ng-model="formData.vegetable">
-        </label>
+        <div class="row item">
+          <div class="col">Vegetable</div>
+          <div class="col">{{daily.vegetable}} cups</div>
+        </div>
 
         <!-- Grain -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.grain.$invalid}">
-          <span class="input-label">Fat</span>
-          <input type="number" name="grain" ng-model="formData.grain">
-        </label>
+        <div class="row item">
+          <div class="col">Grain</div>
+          <div class="col">{{daily.grain}} ounces</div>
+        </div>
 
         <!-- Fruit -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.fruit.$invalid}">
-          <span class="input-label">Fruit</span>
-          <input type="number" name="fruit" ng-model="formData.fruit">
-        </label>
+        <div class="row item">
+          <div class="col">Fruit</div>
+          <div class="col">{{daily.fruit}} cups</div>
+        </div>
 
         <!-- Protein -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.proteinG.$invalid}">
-          <span class="input-label">Protein</span>
-          <input type="number" name="protein" ng-model="formData.proteinG">
-        </label>
+        <div class="row item">
+          <div class="col">Protein</div>
+          <div class="col">{{daily.proteinG}} ounces</div>
+        </div>
 
         <!-- Dairy -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.dairy.$invalid}">
-          <span class="input-label">Dairy</span>
-          <input type="number" name="dairy" ng-model="formData.dairy">
-        </label>
+        <div class="row item">
+          <div class="col">Dairy</div>
+          <div class="col">{{daily.dairy}} cups</div>
+        </div>
 
         <!-- Oil -->
-        <label class="item item-input" ng-class="{'has-error':dailyGoalForm.oil.$invalid}">
-          <span class="input-label">Oil</span>
-          <input type="number" name="protein" ng-model="formData.oil">
-        </label>
+        <div class="row item">
+          <div class="col">Oil</div>
+          <div class="col">{{daily.oil}} teaspoons</div>
+        </div>
 
       </ion-list>
-    </form>
   </ion-content>
 
 </ion-view>

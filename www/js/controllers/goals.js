@@ -13,7 +13,7 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, GoalsServic
   $scope.goalData.getUserGoals().then(function () {
     console.log("GoalsCtrl-after goalData.getUserGoals promise");
 
-    $scope.formData = {
+    $scope.daily = {
       calories: $scope.goalData.calories,
       carbs: $scope.goalData.carbs,
       fat: $scope.goalData.fat,
@@ -29,6 +29,24 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, GoalsServic
       oil: $scope.goalData.oil
     };
 
+    $scope.weekly = {
+      calories: ($scope.goalData.calories * 7),
+      carbs: ($scope.goalData.carbs * 7),
+      fat: ($scope.goalData.fat * 7),
+      fiber: ($scope.goalData.fiber * 7),
+      protein: ($scope.goalData.protein * 7),
+      sodium: ($scope.goalData.sodium * 7),
+      sugar: ($scope.goalData.sugar * 7),
+      vegetable: ($scope.goalData.vegetable * 7),
+      fruit: ($scope.goalData.fruit * 7),
+      proteinG: ($scope.goalData.proteinG * 7),
+      dairy: ($scope.goalData.dairy * 7),
+      grain: ($scope.goalData.grain * 7),
+      oil: ($scope.goalData.oil * 7)
+    };
+
+    $scope.id = $scope.goalData.id;
+
     $ionicLoading.hide();
   });
 
@@ -36,9 +54,11 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, GoalsServic
     console.log("MealEditCtrl::saveMeal");
     $ionicLoading.show();
 
-    GoalsService.updateUserGoals($scope.formData, $scope.id).then(function () {
+    GoalsService.updateUserGoals($scope.daily, $scope.id).then(function () {
       //TODO send a ionic popup message to user saying daily goals have been saved?
       //  Do I display the weekly goals after saving daily or stay on same page?
+      $ionicLoading.hide();
+      $state.go("menu.goals.daily");
     });
   };
 

@@ -62,7 +62,10 @@ app.service("GoalsService", function ($q, AuthService) {
 
       return d.promise;
     },
-    'updateUserGoals': function(){
+    'updateUserGoals': function(dailyGoalData, goalId){
+      //TODO get this saving correctly to Parse.
+
+
 
     }
 
