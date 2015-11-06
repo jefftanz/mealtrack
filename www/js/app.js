@@ -34,14 +34,15 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>","<KEY>");
+		Parse.initialize("<TAG>","<TAG>");
 });
 
-app.run(function ($ionicPlatform, $ionicAnalytics){
-  $ionicPlatform.ready(function (){
-    $ionicAnalytics.register();
-  });
-});
+//TODO turn back on analytics
+//app.run(function ($ionicPlatform, $ionicAnalytics){
+//  $ionicPlatform.ready(function (){
+//    $ionicAnalytics.register();
+//  });
+//});
 
 app.run(function ($ionicPlatform) {
   $ionicPlatform.ready(function () {
@@ -109,50 +110,45 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('menu.goals', {
       url: '/goals',
-      abstract: true,
-      templateUrl: 'templates/menu/goals.html'
+      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
+      //templateUrl: 'templates/menu/goal/goal-daily.html',
+      controller: 'GoalsCtrl',
     })
-    .state('menu.goals.daily', {
-      url: '/daily',
-      views: {
-        'goal-daily': {
-          templateUrl: 'templates/menu/goal/goal-daily.html',
-          controller : 'GoalsCtrl'
-        }
-      }
+    .state('menu.editgoals', {
+      url: '/goals/edit',
+      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
+      controller: 'GoalsCtrl',
     })
-    .state('menu.goals.weekly', {
-      url: '/weekly',
-      views: {
-        'goal-weekly': {
-          templateUrl: 'templates/menu/goal/goal-weekly.html',
-          controller : 'GoalsCtrl'
-        }
-      }
-    })
+    //used for daily / weekly
     //.state('menu.goals', {
     //  url: '/goals',
     //  abstract: true,
     //  templateUrl: 'templates/menu/goals.html'
     //})
-    //.state('menu.goal.daily', {
+    //.state('menu.goals.daily', {
     //  url: '/daily',
-    //  parent: 'menu.goals',
     //  views: {
     //    'goal-daily': {
-    //      templateUrl: 'templates/menu/goal/goal-daily.html'
+    //      templateUrl: 'templates/menu/goal/goal-daily.html',
+    //      controller : 'GoalsCtrl'
     //    }
     //  }
     //})
-    //.state('menu.goal.weekly', {
+    //.state('menu.goals.weekly', {
     //  url: '/weekly',
-    //  parent: 'menu.goals',
     //  views: {
     //    'goal-weekly': {
-    //      templateUrl: 'templates/menu/goal/goal-weekly.html'
+    //      templateUrl: 'templates/menu/goal/goal-weekly.html',
+    //      controller : 'GoalsCtrl'
     //    }
     //  }
     //})
+    //WORKS
+    .state('menu.dailygoal', {
+      url: '/editgoal',
+      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
+      controller : 'GoalsCtrl'
+    })
     .state('menu.meals', {
       url: '/meals',
       templateUrl: 'templates/menu/meals.html',

@@ -10,11 +10,16 @@ app.controller('StatsCtrl', function ($scope, $state, $ionicLoading, StatsServic
   console.log("inside StatsCtrl");
 
   $ionicLoading.show();
-  $scope.statData.getTodaysItems().then(function () {
-    console.log("StatsCtrl-after statData.load promise");
-    $ionicLoading.hide();
+  $scope.statData.getTodaysTotals().then(function () {
+    console.log("StatsCtrl-after getTodaysTotals promise");
+    $scope.statData.getDailyGoals().then(function () {
+      console.log("StatsCtrl-after getDailyGoals promise");
+      $scope.statData.setPercentages().then(function() {
+        console.log("StatsCtrl-after setPercentages promise");
+        $ionicLoading.hide();
+      });
+    });
   });
-
 });
 
 

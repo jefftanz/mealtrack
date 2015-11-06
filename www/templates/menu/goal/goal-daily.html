@@ -1,5 +1,11 @@
 <ion-view view-title="Daily Goals">
 
+  <ion-nav-buttons side="secondary" >
+    <button class="button button-clear"
+            ng-click="editGoals()" >Edit
+    </button >
+  </ion-nav-buttons >
+
   <ion-content class="padding">
       <ion-list>
 
@@ -11,9 +17,9 @@
 
         <!-- Calories -->
         <div class="row item">
-          <div class="col">Calories</div>
-          <div class="col">{{daily.calories}}</div>
-        </div>
+        <div class="col">Calories</div>
+        <div class="col">{{daily.calories}}</div>
+      </div>
 
         <!-- Fat -->
         <div class="row item">

@@ -3,64 +3,77 @@ var app = angular.module('mealtrack.controllers.goals', []);
 /*********************************************************************
  * StatsCtrl
  *********************************************************************/
-app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, GoalsService) {
+app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, $ionicPopup, GoalsService) {
 
   $scope.goalData = GoalsService;
 
   console.log("inside GoalsCtrl");
 
   $ionicLoading.show();
-  $scope.goalData.getUserGoals().then(function () {
-    console.log("GoalsCtrl-after goalData.getUserGoals promise");
 
-    $scope.daily = {
-      calories: $scope.goalData.calories,
-      carbs: $scope.goalData.carbs,
-      fat: $scope.goalData.fat,
-      fiber: $scope.goalData.fiber,
-      protein: $scope.goalData.protein,
-      sodium: $scope.goalData.sodium,
-      sugar: $scope.goalData.sugar,
-      vegetable: $scope.goalData.vegetable,
-      fruit: $scope.goalData.fruit,
-      proteinG: $scope.goalData.proteinG,
-      dairy: $scope.goalData.dairy,
-      grain: $scope.goalData.grain,
-      oil: $scope.goalData.oil
-    };
+  $scope.loadData = function(){
+    $scope.goalData.getUserGoals().then(function () {
+      console.log("GoalsCtrl-after goalData.getUserGoals promise");
 
-    $scope.weekly = {
-      calories: ($scope.goalData.calories * 7),
-      carbs: ($scope.goalData.carbs * 7),
-      fat: ($scope.goalData.fat * 7),
-      fiber: ($scope.goalData.fiber * 7),
-      protein: ($scope.goalData.protein * 7),
-      sodium: ($scope.goalData.sodium * 7),
-      sugar: ($scope.goalData.sugar * 7),
-      vegetable: ($scope.goalData.vegetable * 7),
-      fruit: ($scope.goalData.fruit * 7),
-      proteinG: ($scope.goalData.proteinG * 7),
-      dairy: ($scope.goalData.dairy * 7),
-      grain: ($scope.goalData.grain * 7),
-      oil: ($scope.goalData.oil * 7)
-    };
+      $scope.daily = {
+        calories: $scope.goalData.item.calories,
+        carbs: $scope.goalData.item.carbs,
+        fat: $scope.goalData.item.fat,
+        fiber: $scope.goalData.item.fiber,
+        protein: $scope.goalData.item.protein,
+        sodium: $scope.goalData.item.sodium,
+        sugar: $scope.goalData.item.sugar,
+        vegetable: $scope.goalData.item.vegetable,
+        fruit: $scope.goalData.item.fruit,
+        proteinG: $scope.goalData.item.proteinG,
+        dairy: $scope.goalData.item.dairy,
+        grain: $scope.goalData.item.grain,
+        oil: $scope.goalData.item.oil
+      };
 
-    $scope.id = $scope.goalData.id;
+      $scope.id = $scope.goalData.item.id;
 
-    $ionicLoading.hide();
-  });
+      $ionicLoading.hide();
+    });
+  };
+
+  $scope.editGoals = function(){
+    console.log("going to edit goals page");
+    //$state.go("menu.dailygoal"); // WORKS kinda. Displayed it off menu without back button
+
+    $state.go("menu.editgoals");
+  };
 
   $scope.saveDailyGoals = function(form){
-    console.log("MealEditCtrl::saveMeal");
+    console.log("GoalsCtrl::saveDailyGoals");
+    console.log("DailyGoals.id : "+$scope.id);
     $ionicLoading.show();
 
     GoalsService.updateUserGoals($scope.daily, $scope.id).then(function () {
+
+      //console.log("after saveDailyGoals veg : "+$scope.daily.vegetable);
+
+      var alertPopup = $ionicPopup.alert({
+        title: 'Goals updated!'
+      });
+      alertPopup.then(function(res) {
+        console.log('User goals updated.');
+      });
+
       //TODO send a ionic popup message to user saying daily goals have been saved?
-      //  Do I display the weekly goals after saving daily or stay on same page?
+      //  Do I display the weekly goals after saving daily or stay on same page
+      console.log("After daily goals updated. go to menu.goals state");
+
+      //This should Reload the data?
+      //$scope.loadData();
+
       $ionicLoading.hide();
-      $state.go("menu.goals.daily");
+      //$state.go("menu.goals");
     });
   };
+
+  //Initial Load
+  $scope.loadData();
 
 });
 
