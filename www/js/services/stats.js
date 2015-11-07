@@ -12,7 +12,13 @@ app.service("StatsService", function ($q, AuthService) {
       'fiber': 0,
       'protein': 0,
       'sodium': 0,
-      'sugar': 0
+      'sugar': 0,
+      'vegetable': 0,
+      'fruit': 0,
+      'proteinG': 0,
+      'dairy': 0,
+      'grain': 0,
+      'oil': 0
     },
     'daily': {
       'results': [],
@@ -22,7 +28,13 @@ app.service("StatsService", function ($q, AuthService) {
       'fiber': 0,
       'protein': 0,
       'sodium': 0,
-      'sugar': 0
+      'sugar': 0,
+      'vegetable': 0,
+      'fruit': 0,
+      'proteinG': 0,
+      'dairy': 0,
+      'grain': 0,
+      'oil': 0
     },
     'percentage': {
       'results': [],
@@ -32,7 +44,13 @@ app.service("StatsService", function ($q, AuthService) {
       'fiber': 0,
       'protein': 0,
       'sodium': 0,
-      'sugar': 0
+      'sugar': 0,
+      'vegetable': 0,
+      'fruit': 0,
+      'proteinG': 0,
+      'dairy': 0,
+      'grain': 0,
+      'oil': 0
     },
     'getDailyGoals': function () {
       self.isLoading = true;
@@ -87,6 +105,8 @@ app.service("StatsService", function ($q, AuthService) {
             self.daily.results.push(item);
           });
 
+          console.debug(self.daily.results);
+
           // Finished
           d.resolve();
         }
@@ -118,16 +138,16 @@ app.service("StatsService", function ($q, AuthService) {
 
       // Initialise Query
       var Meal = Parse.Object.extend("Meal");
-      var mealItemQuery = new Parse.Query(Meal);
-      mealItemQuery.descending('created');
+      var totalsQuery = new Parse.Query(Meal);
+      totalsQuery.descending('created');
 
       var lastMidnight = new Date();
       lastMidnight.setHours(0,0,0,0); // last midnight
-      mealItemQuery.greaterThan("created", lastMidnight);
-      mealItemQuery.equalTo("owner", AuthService.user);
+      totalsQuery.greaterThan("created", lastMidnight);
+      totalsQuery.equalTo("owner", AuthService.user);
 
       // Perform the query
-      mealItemQuery.find({
+      totalsQuery.find({
         success: function (results) {
           angular.forEach(results, function (item) {
 
@@ -138,14 +158,15 @@ app.service("StatsService", function ($q, AuthService) {
             self.totals.protein += item.get("protein");
             self.totals.sodium += item.get("sodium");
             self.totals.sugar += item.get("sugar");
-            self.totals.vegetable += item.get("vegetable");
-            self.totals.fruit += item.get("fruit");
-            self.totals.proteinG += item.get("proteinG");
-            self.totals.dairy += item.get("dairy");
-            self.totals.grain += item.get("grain");
-            self.totals.oil += item.get("oil");
 
-            //console.log("item calories: "+item.get("calories"));
+            switch(item.get("group")){
+              case "vegetable": self.totals.vegetable += item.get("amount"); break;
+              case "fruit":  self.totals.fruit += item.get("amount"); break;
+              case "proteinG": self.totals.proteinG += item.get("amount"); break;
+              case "dairy": self.totals.dairy += item.get("amount"); break;
+              case "grain": self.totals.grain += item.get("amount"); break;
+              case "oil": self.totals.oil += item.get("amount"); break;
+            }
 
             self.totals.results.push(item);
           });
@@ -164,6 +185,22 @@ app.service("StatsService", function ($q, AuthService) {
     'setPercentages': function(){
       self.isLoading = true;
       var d = $q.defer();
+
+      //Clear the values
+      self.percentage.results = [];
+      self.percentage.calories = 0;
+      self.percentage.fat = 0;
+      self.percentage.carbs = 0;
+      self.percentage.fiber = 0;
+      self.percentage.protein = 0;
+      self.percentage.sodium = 0;
+      self.percentage.sugar = 0;
+      self.percentage.vegetable = 0;
+      self.percentage.fruit = 0;
+      self.percentage.proteinG = 0;
+      self.percentage.dairy = 0;
+      self.percentage.grain = 0;
+      self.percentage.oil = 0;
 
       if (self.totals.calories == 0 || self.daily.calories == 0){
         self.percentage.calories = 0;

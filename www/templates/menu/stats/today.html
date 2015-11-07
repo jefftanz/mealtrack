@@ -10,7 +10,7 @@
 
       <!-- Header -->
       <div class="row item">
-        <div class="col">Nutrients</div>
+        <div class="col">Basic Nutrients</div>
         <div class="col"></div>
         <div class="col"></div>
       </div>
@@ -32,47 +32,88 @@
       <!-- Fat -->
       <div class="row item">
          <div class="col">Fat</div>
-         <div class="col">{{statData.totals.fat}} / {{statData.daily.fat}}</div>
+         <div class="col">{{statData.totals.fat}} / {{statData.daily.fat}} g</div>
          <div class="col">{{statData.percentage.fat}}%</div>
       </div>
 
       <!-- Fiber -->
       <div class="row item">
          <div class="col">Fiber</div>
-         <div class="col">{{statData.totals.fiber}} / {{statData.daily.fiber}}</div>
+         <div class="col">{{statData.totals.fiber}} / {{statData.daily.fiber}} g</div>
          <div class="col">{{statData.percentage.fiber}}%</div>
       </div>
 
       <!-- Protein -->
       <div class="row item">
          <div class="col">Protein</div>
-         <div class="col">{{statData.totals.protein}} / {{statData.daily.protein}}</div>
+         <div class="col">{{statData.totals.protein}} / {{statData.daily.protein}} g</div>
          <div class="col">{{statData.percentage.protein}}%</div>
       </div>
 
       <!-- Sodium -->
       <div class="row item">
          <div class="col">Sodium</div>
-         <div class="col">{{statData.totals.sodium}} / {{statData.daily.sodium}}</div>
+         <div class="col">{{statData.totals.sodium}} / {{statData.daily.sodium}} mg</div>
          <div class="col">{{statData.percentage.sodium}}%</div>
       </div>
 
       <!-- Sugar -->
       <div class="row item">
          <div class="col">Sugar</div>
-         <div class="col">{{statData.totals.sugar}} / {{statData.daily.sugar}}</div>
-         <div class="col">{{statData.percentage.sugar}}</div>
+         <div class="col">{{statData.totals.sugar}} / {{statData.daily.sugar}} g</div>
+         <div class="col">{{statData.percentage.sugar}}%</div>
       </div>
 
       <br>
 
       <!-- Header -->
       <div class="row item">
-        <div class="col">Sugar</div>
-        <div class="col">{{statData.totals.sugar}} / {{statData.daily.sugar}}</div>
-        <div class="col">{{statData.percentage.sugar}}</div>
+        <div class="col">Food Groups</div>
+        <div class="col"></div>
+        <div class="col"></div>
       </div>
 
+      <!-- Vegetable -->
+      <div class="row item">
+        <div class="col">Vegetable</div>
+        <div class="col">{{statData.totals.vegetable}} / {{statData.daily.vegetable}} cup</div>
+        <div class="col">{{statData.percentage.vegetable}}%</div>
+      </div>
+
+      <!-- Fruit -->
+      <div class="row item">
+        <div class="col">Fruit</div>
+        <div class="col">{{statData.totals.fruit}} / {{statData.daily.fruit}} cup</div>
+        <div class="col">{{statData.percentage.fruit}}%</div>
+      </div>
+
+      <!-- ProteinG -->
+      <div class="row item">
+        <div class="col">Protein</div>
+        <div class="col">{{statData.totals.proteinG}} / {{statData.daily.proteinG}} ounce</div>
+        <div class="col">{{statData.percentage.proteinG}}%</div>
+      </div>
+
+      <!-- Dairy -->
+      <div class="row item">
+        <div class="col">Dairy</div>
+        <div class="col">{{statData.totals.dairy}} / {{statData.daily.dairy}} cup</div>
+        <div class="col">{{statData.percentage.dairy}}%</div>
+      </div>
+
+      <!-- Grain -->
+      <div class="row item">
+        <div class="col">Grain</div>
+        <div class="col">{{statData.totals.grain}} / {{statData.daily.grain}} ounce</div>
+        <div class="col">{{statData.percentage.grain}}%</div>
+      </div>
+
+      <!-- Oil -->
+      <div class="row item">
+        <div class="col">Oil</div>
+        <div class="col">{{statData.totals.oil}} / {{statData.daily.oil}} tspn</div>
+        <div class="col">{{statData.percentage.oil}}%</div>
+      </div>
 
     </ion-list>
 

@@ -24,9 +24,9 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
 		$ionicLoading.hide();
 	});
 
-  $scope.$on("callEditFromAdd", function(event, args){
-    console.log("callEditFromAdd event : "+args.mealId);
-  });
+  //$scope.$on("callEditFromAdd", function(event, args){
+  //  console.log("callEditFromAdd event : "+args.mealId);
+  //});
 
 	$scope.refreshItems = function () {
 		$scope.meals.refresh().then(function () {
@@ -46,7 +46,6 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
     console.log("mealId : "+id);
     console.log("MealListCtrl-editMeal");
     $state.go("menu.edit", { "mealId": id});
-    //$state.go("menu.edit");
   };
 
   $scope.addMeal = function(){
@@ -83,7 +82,17 @@ app.controller('MealCreateCtrl', function ($scope,
       'protein': 0,
       'fiber': 0,
       'group' : '',
-			'picture': null
+      'amount': 0,
+      'foodGroups': [
+        {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"},
+        {'desc': "Fruit", 'value': "fruit", 'unit': "cup"},
+        {'desc': "Protein", 'value': "protein", 'unit': "ounce"},
+        {'desc': "Dairy", 'value': "dairy", 'unit': "cups"},
+        {'desc': "Grain", 'value': "grain", 'unit': "ounce"},
+        {'desc': "Oil", 'value': "oil", 'unit': "tspn"},
+        {'desc': "Other", 'value': "other", 'unit': "cup"}
+      ],
+      'selectedOption': {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"}
 		};
 
     $scope.saveAndAddVar = false;
@@ -111,46 +120,6 @@ app.controller('MealCreateCtrl', function ($scope,
         }
 			});
 		}
-	};
-
-  //$scope.trackMealAndAdd = function (form) {
-  //  if (form.$valid) {
-  //    console.log("MealCreateCtrl::trackAndAdd");
-  //
-  //    $ionicLoading.show();
-  //    MealService.track($scope.formData).then(function () {
-  //      $scope.resetFormData();
-  //      $ionicLoading.hide();
-  //      form.$setPristine(true);
-  //      //console.log("lastMealIdAdded "+MealService.lastMealIdAdded);
-  //      $state.go("menu.meals").then(function(){
-  //        $state.go("menu.track");
-  //      });
-  //    });
-  //  }
-  //};
-
-	$scope.addPicture = function () {
-		var options = {
-			quality: 50,
-			destinationType: Camera.DestinationType.DATA_URL,
-			sourceType: Camera.PictureSourceType.PHOTOLIBRARY, // CAMERA
-			allowEdit: true,
-			encodingType: Camera.EncodingType.JPEG,
-			targetWidth: 480,
-			popoverOptions: CameraPopoverOptions,
-			saveToPhotoAlbum: false
-		};
-
-		$cordovaCamera.getPicture(options).then(function (imageData) {
-			$scope.formData.picture = imageData;
-		}, function (err) {
-			console.error(err);
-			$ionicPopup.alert({
-				title:'Error getting picture',
-				subTitle: 'We had a problem trying to get that picture, please try again'
-			});
-		});
 	};
 
 });
@@ -185,9 +154,41 @@ app.controller('MealEditCtrl', function ($scope,
       'protein': parseInt(meal.get("protein")),
       'fiber': parseInt(meal.get("fiber")),
       'group' : meal.get("group"),
-      'picture': null
+      'amount': parseInt(meal.get("amount")),
+      'foodGroups': [
+        {'desc': "Vegetable", 'value': "veggie", 'unit': "cups"},
+        {'desc': "Fruit", 'value': "fruit", 'unit': "cups"},
+        {'desc': "Protein", 'value': "protein", 'unit': "ounce"},
+        {'desc': "Dairy", 'value': "dairy", 'unit': "cup"},
+        {'desc': "Grain", 'value': "grain", 'unit': "ounce"},
+        {'desc': "Oil", 'value': "oil", 'unit': "tspn"},
+        {'desc': "Other", 'value': "other", 'unit': "cup"}
+      ],
+      'selectedOption':  {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"}
     };
+
+    console.log("before group : "+$scope.formData.group);
+    console.log("before selectedOption.value : "+$scope.formData.selectedOption.value);
+
+    //Set selectedOption in Food Groups combobox
+    var index = 0;
+    switch($scope.formData.group){
+      case "veggie": index = 0; break;
+      case "fruit": index = 1; break;
+      case "protein": index = 2; break;
+      case "dairy": index = 3; break;
+      case "grain": index = 4; break;
+      case "oil":  index = 5; break;
+      case "other":   index = 6; break;
+      default : index = 0; break;
+    };
+    $scope.formData.selectedOption = $scope.formData.foodGroups[index];
+
+    console.log("after group : "+$scope.formData.group);
+    console.log("after selectedOption.value : "+$scope.formData.selectedOption.value);
   };
+
+  //TODO move foundGroups from formData to a global variable for this controller.
 
   $scope.resetFormData = function () {
     $scope.formData = {
@@ -201,31 +202,18 @@ app.controller('MealEditCtrl', function ($scope,
       'protein': 0,
       'fiber': 0,
       'group' : '',
-      'picture': null
+      'amount': 0,
+      'foodGroups': [
+        {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"},
+        {'desc': "Fruit", 'value': "fruit", 'unit': "cup"},
+        {'desc': "Protein", 'value': "protein", 'unit': "ounce"},
+        {'desc': "Dairy", 'value': "dairy", 'unit': "cup"},
+        {'desc': "Grain", 'value': "grain", 'unit': "ounce"},
+        {'desc': "Oil", 'value': "oil", 'unit': "tspn"},
+        {'desc': "Other", 'value': "other", 'unit': "cup"}
+      ],
+      'selectedOption':  {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"}
     };
-  };
-
-  $scope.addPicture = function () {
-    var options = {
-      quality: 50,
-      destinationType: Camera.DestinationType.DATA_URL,
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY, // CAMERA
-      allowEdit: true,
-      encodingType: Camera.EncodingType.JPEG,
-      targetWidth: 480,
-      popoverOptions: CameraPopoverOptions,
-      saveToPhotoAlbum: false
-    };
-
-    $cordovaCamera.getPicture(options).then(function (imageData) {
-      $scope.formData.picture = imageData;
-    }, function (err) {
-      console.error(err);
-      $ionicPopup.alert({
-        title:'Error getting picture',
-        subTitle: 'We had a problem trying to get that picture, please try again'
-      });
-    });
   };
 
   $scope.saveMeal = function (form) {

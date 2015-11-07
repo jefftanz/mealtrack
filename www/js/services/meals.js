@@ -1,6 +1,6 @@
 var app = angular.module('mealtrack.services.meals', []);
 
-app.service("MealService", function ($q, AuthService) {
+app.service("MealService", function ($q, $ionicPopup, AuthService) {
 	var self = {
 		'page': 0,
 		'page_size': 20,
@@ -68,19 +68,13 @@ app.service("MealService", function ($q, AuthService) {
 		'track': function (data) {
 			self.isSaving = true;
 			var d = $q.defer();
-
       var iconName;
 			var Meal = Parse.Object.extend("Meal");
 			var user = AuthService.user;
-			//var file = data.picture ? new Parse.File("photo.jpg", {base64: data.picture}) : null;
-      //var file = null; //new Parse.File('cow-icon.png', {base64: data.picture});
-
 			var meal = new Meal();
+
 			meal.set("owner", user);
-			meal.set("picture", null);
-      //meal.set("picture", 'img/animals/puppy-icon.png');
 			meal.set("title", data.title);
-			meal.set("category", data.category);
 			meal.set("calories", parseInt(data.calories));
       meal.set("fat", parseInt(data.fat));
       meal.set("sodium", parseInt(data.sodium));
@@ -88,13 +82,13 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("protein", parseInt(data.protein));
       meal.set("carbs", parseInt(data.carbs));
       meal.set("fiber", parseInt(data.fiber));
-      meal.set("group", data.group);
+      console.log("formData.selectedOption.value : "+ data.selectedOption.value);
+      meal.set("group",  data.selectedOption.value);
+      console.log("formData.amount : "+ data.amount);
+      meal.set("amount", parseInt(data.amount));
 			meal.set("created", new Date());
 
-      // case "fat": iconName = 'img/animals/pig-icon.png';break;
-      // case "sugar": iconName = 'img/animals/puppy-icon.png';break;
-
-      switch(data.group){
+      switch(data.selectedOption.value){
         case "fruit": iconName = 'img/food/fruit-icon.png';break;
         case "veggie": iconName = 'img/food/veggie-icon.png';break;
         case "grain": iconName = 'img/food/grain-icon.png';break;
@@ -102,6 +96,7 @@ app.service("MealService", function ($q, AuthService) {
         case "oil": iconName = 'img/food/oil-icon.png';break;
         case "dairy": iconName = 'img/food/dairy-icon.png';break;
         case "other": iconName = 'img/food/question-icon.png';break;
+        default: iconName = 'img/food/question-icon.png';break;
       }
 
       meal.set("iconName", iconName);
@@ -111,7 +106,7 @@ app.service("MealService", function ($q, AuthService) {
 					console.log("Meal tracked");
 					self.results.unshift(meal);
           console.log("new Meal Id "+meal.id);
-          self.lastMealIdAdded = meal.id;
+          //self.lastMealIdAdded = meal.id;
 					d.resolve(meal);
 				},
 				error: function (item, error) {
@@ -140,22 +135,15 @@ app.service("MealService", function ($q, AuthService) {
     'update': function (formData, mealId) {
       self.isSaving = true;
       var d = $q.defer();
-
       var iconName;
       var Meal = Parse.Object.extend("Meal");
       var user = AuthService.user;
-      //var file = formData.picture ? new Parse.File("photo.jpg", {base64: formData.picture}) : null;
-      // TODO figure out when to replace the picture or leave it alone.
-
       var item = this.getMeal(mealId);
       var meal = new Meal(item);
+
       meal.set("owner", user);
-
-      //if (file != null){ meal.set("picture", file);}
-
       meal.set("id", mealId);
       meal.set("title", formData.title);
-      meal.set("category", formData.category);
       meal.set("calories", parseInt(formData.calories));
       meal.set("fat", parseInt(formData.fat));
       meal.set("sodium", parseInt(formData.sodium));
@@ -163,13 +151,12 @@ app.service("MealService", function ($q, AuthService) {
       meal.set("protein", parseInt(formData.protein));
       meal.set("carbs", parseInt(formData.carbs));
       meal.set("fiber", parseInt(formData.fiber));
-      meal.set("group", formData.group);
-      meal.set("picture", null);
+      console.log("getMeal formData.group.value : "+formData.selectedOption.value);
+      meal.set("group", formData.selectedOption.value);
+      console.log("getMeal formData.amount : "+formData.amount);
+      meal.set("amount", parseInt(formData.amount));
 
-      //case "fat": iconName = 'img/animals/pig-icon.png';break;
-      //case "sugar": iconName = 'img/animals/puppy-icon.png';break;
-
-      switch(formData.group){
+      switch(formData.selectedOption.value){
         case "fruit": iconName = 'img/food/fruit-icon.png';break;
         case "veggie": iconName = 'img/food/veggie-icon.png';break;
         case "grain": iconName = 'img/food/grain-icon.png';break;
@@ -177,6 +164,7 @@ app.service("MealService", function ($q, AuthService) {
         case "oil": iconName = 'img/food/oil-icon.png';break;
         case "dairy": iconName = 'img/food/dairy-icon.png';break;
         case "other": iconName = 'img/food/other-icon.png';break;
+        default : iconName = 'img/food/veggie-icon.png';break;
       }
 
       meal.set("iconName", iconName);
