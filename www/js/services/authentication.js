@@ -10,7 +10,8 @@ app.service('AuthService', function ($q, $ionicPopup) {
 			Parse.User.logIn(email, password, {
 				success: function (user) {
 					self.user = user;
-          self.registerUser();
+          //TODO turn on 4 ionic deploy, push, analytics
+          //self.registerUser();
 					d.resolve(self.user);
 				},
 				error: function (user, error) {
@@ -41,7 +42,8 @@ app.service('AuthService', function ($q, $ionicPopup) {
 				success: function (user) {
 					console.log("Account Created");
 					self.user = user;
-          self.registerUser();
+          //TODO turn on 4 ionic deploy, push, analytics
+          //self.registerUser();
 					d.resolve(self.user);
 				},
 				error: function (user, error) {
@@ -207,31 +209,33 @@ app.service('AuthService', function ($q, $ionicPopup) {
       });
 
       return d.promise;
-    },
-    'registerUser': function() {
-      // kick off the platform web client
-      Ionic.io();
-      // this will give you a fresh user or the previously saved 'current user'
-      var user = Ionic.User.current();
-      // if the user doesn't have an id, you'll need to give it one.
-      if (!user.id) {
-        user.id = self.user.id;
-        user.set('name', self.user.get("name"));
-        user.set('username', self.user.get("username"));
-        user.set('email', self.user.get("email"));
-      }
-      //persist the user
-      user.save().then(function () {
-      // register this device for pushes
-        var push = new Ionic.Push({"debug": true});
-        push.register(function (token) {
-          // store the resulting device token to the user object
-          console.log('Got token', token.token, token.platform);
-          self.current.deviceToken = token.token;
-          self.current.$save();
-        });
-      })
     }
+    //TODO Turn back on for Registering Ionic users for analytics, deploy, push
+    //,
+    //'registerUser': function() {
+    //  // kick off the platform web client
+    //  Ionic.io();
+    //  // this will give you a fresh user or the previously saved 'current user'
+    //  var user = Ionic.User.current();
+    //  // if the user doesn't have an id, you'll need to give it one.
+    //  if (!user.id) {
+    //    user.id = self.user.id;
+    //    user.set('name', self.user.get("name"));
+    //    user.set('username', self.user.get("username"));
+    //    user.set('email', self.user.get("email"));
+    //  }
+    //  //persist the user
+    //  user.save().then(function () {
+    //  // register this device for pushes
+    //    var push = new Ionic.Push({"debug": true});
+    //    push.register(function (token) {
+    //      // store the resulting device token to the user object
+    //      console.log('Got token', token.token, token.platform);
+    //      self.current.deviceToken = token.token;
+    //      self.current.$save();
+    //    });
+    //  })
+    //}
 
 	};
 

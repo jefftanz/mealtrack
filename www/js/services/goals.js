@@ -41,7 +41,7 @@ app.service("GoalsService", function ($q, AuthService) {
 
             //Avg diet values on 2000 Calories
             self.item.id = item.id;
-            self.setServiceItemFromParseObject(item);
+            self.setGoalServiceItemFromParseObject(item);
             //console.log("load goals item.id : "+item.id);
             //self.item.calories = item.get("calories");
             //self.item.fat = item.get("fat");
@@ -67,7 +67,7 @@ app.service("GoalsService", function ($q, AuthService) {
 
       return d.promise;
     },
-    'setServiceItemFromParseObject' : function(parseObject){
+    'setGoalServiceItemFromParseObject' : function(parseObject){
       self.item.calories = parseObject.get("calories");
       self.item.fat = parseObject.get("fat");
       self.item.carbs = parseObject.get("carbs");
@@ -82,6 +82,21 @@ app.service("GoalsService", function ($q, AuthService) {
       self.item.grain = parseObject.get("grain");
       self.item.oil = parseObject.get("oil");
     },
+    'setGoalServiceItemFromFormData' : function(formData){
+      self.item.calories = formData.calories;
+      self.item.fat = formData.fat;
+      self.item.carbs = formData.carbs;
+      self.item.fiber = formData.fiber;
+      self.item.protein = formData.protein;
+      self.item.sodium = formData.sodium;
+      self.item.sugar = formData.sugar;
+      self.item.vegetable = formData.vegetable;
+      self.item.fruit = formData.fruit;
+      self.item.proteinG = formData.proteinG;
+      self.item.dairy = formData.dairy;
+      self.item.grain = formData.grain;
+      self.item.oil = formData.oil;
+    },
     'updateUserGoals': function(dailyGoalData, goalId){
       //TODO get this saving correctly to Parse.
       self.isSaving = true;
@@ -92,9 +107,6 @@ app.service("GoalsService", function ($q, AuthService) {
 
       var DailyGoal = Parse.Object.extend("DailyGoal");
       var user = AuthService.user;
-      //var file = formData.picture ? new Parse.File("photo.jpg", {base64: formData.picture}) : null;
-      // TODO figure out when to replace the picture or leave it alone.
-
       var parseObject = new DailyGoal(self.item);
 
       parseObject.set("owner", user);
@@ -120,6 +132,9 @@ app.service("GoalsService", function ($q, AuthService) {
           console.log("updated goal.id: "+returnObject.id);
           console.log("calories: "+returnObject.get("calories"));
           //self.resetUserGoals(dailyGoal);
+
+          console.log("set goal service item from parse object return success.");
+          self.setGoalServiceItemFromParseObject(returnObject);
 
           d.resolve(returnObject);
         },

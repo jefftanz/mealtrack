@@ -1,7 +1,5 @@
 var app = angular.module('mealtrack', [
 	'ionic',
-  'ionic.service.core',
-  'ionic.service.analytics',
 	'ngMessages',
 	'ngCordova',
 	'angularMoment',
@@ -20,6 +18,12 @@ var app = angular.module('mealtrack', [
 	'mealtrack.filters.mealtime'
 ]);
 
+//TODO need to add
+// $ ionic add ionic-platform-web-client
+// $ ionic plugin add ionic-plugin-deploy
+// 4 ionic deploy, push, analytics
+// ionic . core or something as well?
+
 app.run(function ($ionicPlatform) {
 	$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -37,43 +41,44 @@ app.run(function ($ionicPlatform) {
 		Parse.initialize("<KEY>","<KEY>");
 });
 
-//TODO turn back on analytics
+//TODO turn on 4 ionic deploy, push, analytics
 //app.run(function ($ionicPlatform, $ionicAnalytics){
 //  $ionicPlatform.ready(function (){
 //    $ionicAnalytics.register();
 //  });
 //});
 
-app.run(function ($ionicPlatform) {
-  $ionicPlatform.ready(function () {
-    var deploy = new Ionic.Deploy();
-    deploy.watch().then(
-      function noop() {
-      },
-      function noop() {
-      },
-      function hasUpdate(hasUpdate) {
-        console.log("Has Update ", hasUpdate);
-        if (hasUpdate) {
-          console.log("Calling ionicDeploy.update()");
-          deploy.update().then(function (deployResult) {
-          // deployResult will be true when successfull and
-          // false otherwise
-          }, function (deployUpdateError) {
-            // fired if we're unable to check for updates or if any
-            // errors have occured.
-            console.log('Ionic Deploy: Update error! ', deployUpdateError);
-          }, function (deployProgress) {
-            // this is a progress callback, so it will be called a lot
-            // deployProgress will be an Integer representing the current
-            // completion percentage.
-            console.log('Ionic Deploy: Progress... ', deployProgress);
-          });
-        }
-      }
-    );
-  });
-});
+//TODO turn on 4 ionic deploy, push, analytics
+//app.run(function ($ionicPlatform) {
+//  $ionicPlatform.ready(function () {
+//    var deploy = new Ionic.Deploy();
+//    deploy.watch().then(
+//      function noop() {
+//      },
+//      function noop() {
+//      },
+//      function hasUpdate(hasUpdate) {
+//        console.log("Has Update ", hasUpdate);
+//        if (hasUpdate) {
+//          console.log("Calling ionicDeploy.update()");
+//          deploy.update().then(function (deployResult) {
+//          // deployResult will be true when successfull and
+//          // false otherwise
+//          }, function (deployUpdateError) {
+//            // fired if we're unable to check for updates or if any
+//            // errors have occured.
+//            console.log('Ionic Deploy: Update error! ', deployUpdateError);
+//          }, function (deployProgress) {
+//            // this is a progress callback, so it will be called a lot
+//            // deployProgress will be an Integer representing the current
+//            // completion percentage.
+//            console.log('Ionic Deploy: Progress... ', deployProgress);
+//          });
+//        }
+//      }
+//    );
+//  });
+//});
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 	$stateProvider
@@ -100,54 +105,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       abstract: true,
       templateUrl: "templates/menu.html"
     })
-    .state('menu.home', {
-      url: '/home',
-      templateUrl: 'templates/menu/home.html'
-    })
-    .state('menu.settings', {
-      url: '/settings',
-      templateUrl: 'templates/menu/settings.html'
-    })
     .state('menu.goals', {
       url: '/goals',
-      //templateUrl: 'templates/menu/goal/edit-goal-daily.html',
-      templateUrl: 'templates/menu/goal/goal-daily.html',
+      templateUrl: 'templates/menu/edit-goal-daily.html',
+      //templateUrl: 'templates/menu/goal-daily.html',
       controller: 'GoalsCtrl',
     })
     .state('menu.editgoals', {
       url: '/goals/edit',
-      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
+      templateUrl: 'templates/menu/edit-goal-daily.html',
       controller: 'GoalsCtrl',
-    })
-    //used for daily / weekly
-    //.state('menu.goals', {
-    //  url: '/goals',
-    //  abstract: true,
-    //  templateUrl: 'templates/menu/goals.html'
-    //})
-    //.state('menu.goals.daily', {
-    //  url: '/daily',
-    //  views: {
-    //    'goal-daily': {
-    //      templateUrl: 'templates/menu/goal/goal-daily.html',
-    //      controller : 'GoalsCtrl'
-    //    }
-    //  }
-    //})
-    //.state('menu.goals.weekly', {
-    //  url: '/weekly',
-    //  views: {
-    //    'goal-weekly': {
-    //      templateUrl: 'templates/menu/goal/goal-weekly.html',
-    //      controller : 'GoalsCtrl'
-    //    }
-    //  }
-    //})
-    //WORKS
-    .state('menu.dailygoal', {
-      url: '/editgoal',
-      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
-      controller : 'GoalsCtrl'
     })
     .state('menu.meals', {
       url: '/meals',
@@ -156,7 +123,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
 		.state('menu.track', {
 			url: '/track',
-      templateUrl: 'templates/menu/track.html',
+      templateUrl: 'templates/menu/add-meal.html',
       controller : 'MealCreateCtrl'
 		})
     .state('menu.edit', {
@@ -193,9 +160,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       url: '/group/protein',
       templateUrl: 'templates/menu/group/group-protein.html',
     })
-    .state('menu.vegatable', {
-      url: '/group/vegatable',
-      templateUrl: 'templates/menu/group/group-vegatable.html',
+    .state('menu.vegetable', {
+      url: '/group/vegetable',
+      templateUrl: 'templates/menu/group/group-vegetable.html',
     })
     .state('menu.stats', {
       url: '/stats',
