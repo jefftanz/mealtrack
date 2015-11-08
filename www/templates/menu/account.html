@@ -7,13 +7,13 @@
 		</button >
 	</ion-nav-buttons >
 
-
 	<ion-content padding="true"
 	             scroll="false" >
-		<form name="accountForm"
-          id="myform"
+
+		<form name="editAccountForm"
+          id="accountForm"
 		      novalidate=""
-		      ng-submit="submit(accountForm)" >
+		      ng-submit="submit(editAccountForm)" >
 
       <ion-list >
         <ion-item>
@@ -35,7 +35,7 @@
         </ion-item>
 
 				<!--<label class="item item-input item-floating-label"-->
-				       <!--ng-class="{'has-error':accountForm.name.$invalid}" >-->
+				       <!--ng-class="{'has-error':editAccountForm.name.$invalid}" >-->
 					<!--<span class="input-label" >Name</span >-->
 					<!--<input type="text"-->
 					       <!--placeholder="Name"-->
@@ -44,12 +44,12 @@
 					       <!--ng-required="true" >-->
 				<!--</label >-->
 				<!--<div class="form-errors"-->
-				     <!--ng-messages="accountForm.name.$error">-->
+				     <!--ng-messages="editAccountForm.name.$error">-->
 				     <!--<div ng-messages-include="templates/form-errors.html" ></div>-->
 				<!--</div >-->
 
 				<!--<label class="item item-input item-floating-label"-->
-				       <!--ng-class="{'has-error':accountForm.email.$invalid}" >-->
+				       <!--ng-class="{'has-error':editAccountForm.email.$invalid}" >-->
 					<!--<span class="input-label" >Email</span >-->
 					<!--<input type="email"-->
 					       <!--placeholder="Email"-->
@@ -58,13 +58,13 @@
 					       <!--ng-required="true" >-->
 				<!--</label >-->
 				<!--<div class="form-errors"-->
-				     <!--ng-messages="accountForm.email.$error">-->
+				     <!--ng-messages="editAccountForm.email.$error">-->
 				     <!--<div ng-messages-include="templates/form-errors.html" ></div>-->
 				<!--</div >-->
 
         <!-- Age -->
         <label class="item item-input item-select"
-               ng-class="{'has-error':accountForm.age.$invalid}" >
+               ng-class="{'has-error':editAccountForm.age.$invalid}" >
           <div class="input-label" >Age</div >
           <select name="group"
                   ng-model="formData.age"
@@ -76,13 +76,13 @@
           </select >
         </label >
         <div class="form-errors"
-             ng-messages="accountForm.group.$error">
+             ng-messages="editAccountForm.group.$error">
           <div ng-messages-include="templates/form-errors.html" > </div>
         </div >
 
         <!-- Gender -->
         <label class="item item-input item-select"
-               ng-class="{'has-error':accountForm.gender.$invalid}" >
+               ng-class="{'has-error':editAccountForm.gender.$invalid}" >
           <div class="input-label" >Gender</div >
           <select name="group"
                   ng-model="formData.gender"
@@ -93,7 +93,7 @@
           </select >
         </label >
         <div class="form-errors"
-             ng-messages="accountForm.gender.$error">
+             ng-messages="editAccountForm.gender.$error">
           <div ng-messages-include="templates/form-errors.html" > </div>
         </div >
 
@@ -109,7 +109,7 @@
   <!--<div class="bar bar-footer">-->
     <!--<button class="button button-positive button-block"-->
             <!--type="submit"-->
-            <!--form="myform">Save</button>-->
+            <!--form="accountForm">Save</button>-->
   <!--</div>-->
 
 

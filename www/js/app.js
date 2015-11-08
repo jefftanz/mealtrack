@@ -34,7 +34,7 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>","<KEY>");
+		Parse.initialize("<TAG>","<TAG>");
 });
 
 //TODO turn back on analytics

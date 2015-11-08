@@ -132,6 +132,17 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
       console.log("Meal Not found");
       return undefined;
     },
+    'getMealIndex': function (mealId) {
+      console.log("this.results.length : "+this.results.length);
+      for (var i = 0; i < this.results.length; i++){
+        if (this.results[i].id == mealId){
+          return i;
+          console.log("Found meal index");
+        }
+      }
+      console.log("Meal index Not found");
+      return undefined;
+    },
     'update': function (formData, mealId) {
       self.isSaving = true;
       var d = $q.defer();
@@ -183,6 +194,36 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
           d.reject(error);
         }
       });
+
+      return d.promise;
+    },
+    'destroyMeal': function (mealId) {
+      console.log("destroyMeal mealId: "+mealId);
+      self.isSaving = true;
+      var d = $q.defer();
+      var index = this.getMealIndex(mealId);
+
+      self.results[index].destroy().then(function(){
+        console.log("after destroy then");
+        d.resolve();
+      });
+
+      //self.results[index].destroy(null, {
+      //  success: function (meal) {
+      //    console.log("Meal destroyed");
+      //    self.results.splice(index, 1);
+      //    d.resolve(meal);
+      //  },
+      //  error: function (item, error) {
+      //    $ionicPopup.alert({
+      //      title: "Error destroying meal",
+      //      subTitle: error.message
+      //    });
+      //    d.reject(error);
+      //  }
+      //});
+
+      console.log("after meal.destroy");
 
       return d.promise;
     }

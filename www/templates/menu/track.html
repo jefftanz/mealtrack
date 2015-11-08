@@ -4,46 +4,22 @@
     <ion-nav-back-button></ion-nav-back-button>
   </ion-nav-bar>
 
-	<!--<ion-nav-buttons side="secondary" >-->
-			<!--<button class="button button-icon ion-camera"-->
-			        <!--ng-click="addPicture()" >-->
-			<!--</button >-->
-	<!--</ion-nav-buttons >-->
-
 	<ion-content >
-		<form name="createForm"
-          id ="myform"
+		<form name="createMealForm"
+          id ="createForm"
 		      novalidate=""
-		      ng-submit="trackMeal(createForm)"
+		      ng-submit="trackMeal(createMealForm)"
 		      class="create-form" >
 			<ion-list >
 
         <!-- Title -->
-        <label class="item item-input" ng-class="{'has-error':createForm.title.$invalid}">
-          <span class="input-label">Description</span>
-          <input type="text" name="title" ng-model="formData.title">
-        </label>
-        <div class="form-errors" ng-messages="createForm.title.$error">
+        <div class="row item" >
+          <div class="col">Description</div>
+          <input class ="col" type="text" name="title" ng-model="formData.title" style="text-align: left">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.title.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
-
-        <!-- Food Group -->
-        <!--<label class="item item-input item-select"-->
-               <!--ng-class="{'has-error':createForm.group.$invalid}" >-->
-          <!--<div class="input-label" >Food Group</div >-->
-          <!--<select name="group"-->
-                  <!--ng-model="formData.group"-->
-                  <!--ng-required="true" >-->
-            <!--<option selected value="" >Please Choose</option >-->
-            <!--<option value="fruit" >Fruit</option >-->
-            <!--<option value="veggie" >Veggie</option >-->
-            <!--<option value="grain" >Grain</option >-->
-            <!--<option value="protein" >Protein</option >-->
-            <!--<option value="dairy" >Dairy</option >-->
-            <!--<option value="oil" >Oil</option >-->
-            <!--<option value="other" >Other</option >-->
-          <!--</select >-->
-        <!--</label >-->
 
         <!-- Food Group -->
         <label class="item item-input item-select"
@@ -55,130 +31,109 @@
           </select>
         </label >
         <div class="form-errors"
-             ng-messages="createForm.group.$error">
+             ng-messages="createMealForm.group.$error">
           <div ng-messages-include="templates/form-errors.html" > </div>
         </div >
 
         <!-- Amount -->
-        <label class="item item-input" ng-class="{'has-error':editForm.amount.$invalid}">
-          <span class="input-label">{{formData.selectedOption.unit}}</span>
-          <input type="number" name="amount" ng-model="formData.amount">
-        </label>
+        <div class="row item" >
+          <div class="col">Amount ({{formData.selectedOption.unit}})</div>
+          <input class ="col" type="number" name="amount" ng-model="formData.amount" style="text-align: center">
+        </div>
         <div class="form-errors" ng-messages="editForm.amount.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Calories -->
-        <label class="item item-input" ng-class="{'has-error':createForm.calories.$invalid}">
-          <span class="input-label">Calories</span>
-          <input type="number" name="calories" ng-model="formData.calories">
-        </label>
-        <div class="form-errors" ng-messages="createForm.calories.$error">
+        <div class="row item" >
+          <div class="col">Calories (g)</div>
+          <input class ="col" type="number" name="calories" ng-model="formData.calories" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.calories.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Fat -->
-        <label class="item item-input" ng-class="{'has-error':createForm.fat.$invalid}">
-          <span class="input-label">Fat</span>
-          <input type="number" name="fat" ng-model="formData.fat">
-        </label>
-        <div class="form-errors" ng-messages="createForm.fat.$error">
+        <div class="row item" >
+          <div class="col">Fat (g)</div>
+          <input class ="col" type="number" name="fat" ng-model="formData.fat" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.fat.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Sodium -->
-        <label class="item item-input" ng-class="{'has-error':createForm.sodium.$invalid}">
-          <span class="input-label">Sodium</span>
-          <input type="number" name="sodium" ng-model="formData.sodium">
-        </label>
-        <div class="form-errors" ng-messages="createForm.sodium.$error">
+        <div class="row item" >
+          <div class="col">Sodium (mg)</div>
+          <input class ="col" type="number" name="sodium" ng-model="formData.sodium" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.sodium.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Carbs -->
-        <label class="item item-input" ng-class="{'has-error':createForm.carbs.$invalid}">
-          <span class="input-label">Carbs</span>
-          <input type="number" name="carbs" ng-model="formData.carbs">
-        </label>
-        <div class="form-errors" ng-messages="createForm.carbs.$error">
+        <div class="row item" >
+          <div class="col">Carbs (g)</div>
+          <input class ="col" type="number" name="carbs" ng-model="formData.carbs" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.carbs.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Sugar -->
-        <label class="item item-input" ng-class="{'has-error':createForm.sugar.$invalid}">
-          <span class="input-label">Sugar</span>
-          <input type="number" name="sugar" ng-model="formData.sugar">
-        </label>
-        <div class="form-errors" ng-messages="createForm.sugar.$error">
+        <div class="row item" >
+          <div class="col">Sugar (g)</div>
+          <input class ="col" type="number" name="sugar" ng-model="formData.sugar" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.sugar.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Protein -->
-        <label class="item item-input" ng-class="{'has-error':createForm.protein.$invalid}">
-          <span class="input-label">Protein</span>
-          <input type="number" name="protein" ng-model="formData.protein">
-        </label>
-        <div class="form-errors" ng-messages="createForm.protein.$error">
+        <div class="row item" >
+          <div class="col">Protein (g)</div>
+          <input class ="col" type="number" name="protein" ng-model="formData.protein" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.protein.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Fiber -->
-        <label class="item item-input" ng-class="{'has-error':createForm.fiber.$invalid}">
-          <span class="input-label">Fiber</span>
-          <input type="number" name="fiber" ng-model="formData.fiber">
-        </label>
-        <div class="form-errors" ng-messages="createForm.fiber.$error">
+        <div class="row item" >
+          <div class="col">Fiber (g)</div>
+          <input class ="col" type="number" name="fiber" ng-model="formData.fiber" style="text-align: center">
+        </div>
+        <div class="form-errors" ng-messages="createMealForm.fiber.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
 			</ion-list >
 
-			<!--<div class="padding" ng-show="formData.picture">-->
-				<!--<div class="picture">-->
-					<!--<img ng-src="data:image/jpeg;base64,{{formData.picture}}"-->
-					     <!--alt="" />-->
-				<!--</div >-->
-			<!--</div>-->
-
-      <table style="table-layout: fixed; width: 100%; height: 10%;">
-        <tr>
-          <td>
-            <button style="width: 100%;"
-                    class="button button-positive button-block"
-                    type="submit" >Save
-            </button >
-          </td>
-          <td>
-            <button style="width: 100%;"
-                    class="button button-positive button-block"
-                    type="submit" ng-click="saveAndAdd()">Save & Add
-            </button >
-          </td>
-        </tr>
-      </table>
+      <!--<table style="table-layout: fixed; width: 100%; height: 10%;">-->
+        <!--<tr>-->
+          <!--<td>-->
+            <!--<button style="width: 100%;"-->
+                    <!--class="button button-positive button-block"-->
+                    <!--type="submit" >Save-->
+            <!--</button >-->
+          <!--</td>-->
+          <!--<td>-->
+            <!--<button style="width: 100%;"-->
+                    <!--class="button button-positive button-block"-->
+                    <!--type="submit" ng-click="saveAndAdd()">Save & Add-->
+            <!--</button >-->
+          <!--</td>-->
+        <!--</tr>-->
+      <!--</table>-->
 
 		</form >
 	</ion-content >
 
-  <!--<div class="bar bar-footer">-->
-    <!--<table style="table-layout: fixed; width: 100%; height: 10%;">-->
-      <!--<tr>-->
-        <!--<td>-->
-          <!--<button style="width: 100%;"-->
-                  <!--class="button button-positive button-block"-->
-                  <!--form="myform"-->
-                  <!--type="submit" >Save-->
-          <!--</button >-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<button style="width: 100%;"-->
-                  <!--class="button button-positive button-block"-->
-                  <!--type="submit"-->
-                  <!--ng-click="saveAndAdd()">Save & Add-->
-          <!--</button >-->
-        <!--</td>-->
-      <!--</tr>-->
-    <!--</table>-->
-  <!--</div>-->
+  <div class="bar bar-footer">
+    <button class="button button-positive"
+            type="submit"
+            style="width: 100%"
+            form="createForm">Save</button>
+  </div>
 
 </ion-view >

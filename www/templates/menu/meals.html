@@ -13,41 +13,18 @@
 				on-refresh="refreshItems()" >
 		</ion-refresher >
 
-    <!-- make this an ion-list? -->
 		<div class="list">
       <a class="item item-avatar-left"
          ng-click="editMeal(meal.id)"
          ng-repeat="meal in meals.results">
-        <!--ng-click="editMeal(meal.id)"-->
-        <!--href="#/menu/edit/{{meal.id}}"-->
 
         <img style="align-content: center" ng-src="{{meal.attributes.iconName}}">
 
-        <!--<img style="align-content: center" ng-src="img/animals/cow-icon.png">-->
-
         <div style="vertical-align: middle;" >
-          <!--<h2 >{{meal.id}}</h2 >-->
           <h2 >{{meal.attributes.title}}</h2 >
-          <!--<h2> #{{meal.attributes.category|lowercase}} </h2>-->
           <p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
-
-          <!--<span>{{meal.attributes.calories}}cal, </span >-->
-          <!--<span>{{meal.attributes.carbs}}g carbs, </span >-->
-          <!--<span class="calories" >{{meal.attributes.fat}}g fat, </span >-->
-          <!--<span class="calories" >{{meal.attributes.protein}}g protein, </span >-->
-          <!--<span class="calories" >{{meal.attributes.sugar}}g sugar</span >-->
         </div >
-        <!--<div class="item item-image"-->
-             <!--ng-if="meal.attributes.picture" >-->
-          <!--<img ng-src="{{meal.attributes.picture.url()}}" >-->
-        <!--</div >-->
-
-        <!--<div class="item " >-->
-          <!--<span class="category" >#{{meal.attributes.category|lowercase}}</span >-->
-          <!--<span class="calories" >{{meal.attributes.calories}}cal</span >-->
-        <!--</div >-->
       </a>
-
 
 		</div >
 

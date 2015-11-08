@@ -1,10 +1,10 @@
 <ion-view view-title="Edit Daily Goals">
 
   <ion-content class="padding">
-    <form name="editForm"
+    <form name="editGoalForm"
           id="goalForm"
           novalidate=""
-          ng-submit="saveDailyGoals(editForm)"
+          ng-submit="saveDailyGoals(editGoalForm)"
           class="create-form" >
 
       <ion-list>
@@ -20,11 +20,11 @@
         </div>
 
         <!-- Calories -->
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.calories.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.calories.$invalid}">-->
           <!--<span class="input-label">Calories (g)</span>-->
           <!--<input type="number" name="calories" ng-model="daily.calories" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.calories.$error">
+        <div class="form-errors" ng-messages="editGoalForm.calories.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -33,11 +33,11 @@
           <div class="col">Fat (g)</div>
           <input class ="col" type="number" name="fat" ng-model="daily.fat" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.fat.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.fat.$invalid}">-->
           <!--<span class="input-label">Fat (g)</span>-->
           <!--<input type="number" name="fat" ng-model="daily.fat" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.fat.$error">
+        <div class="form-errors" ng-messages="editGoalForm.fat.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -46,11 +46,11 @@
           <div class="col">Sodium (mg)</div>
           <input class ="col" type="number" name="sodium" ng-model="daily.sodium" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.sodium.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.sodium.$invalid}">-->
           <!--<span class="input-label">Sodium (mg)</span>-->
           <!--<input type="number" name="sodium" ng-model="daily.sodium" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.sodium.$error">
+        <div class="form-errors" ng-messages="editGoalForm.sodium.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -59,11 +59,11 @@
           <div class="col">Carbs (g)</div>
           <input class ="col" type="number" name="carbs" ng-model="daily.carbs" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.carbs.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.carbs.$invalid}">-->
           <!--<span class="input-label">Carbs (g)</span>-->
           <!--<input type="number" name="carbs" ng-model="daily.carbs" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.carbs.$error">
+        <div class="form-errors" ng-messages="editGoalForm.carbs.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -72,11 +72,11 @@
           <div class="col">Sugar (g)</div>
           <input class ="col" type="number" name="sugar" ng-model="daily.sugar" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.sugar.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.sugar.$invalid}">-->
           <!--<span class="input-label">Sugar (g)</span>-->
           <!--<input type="number" name="sugar" ng-model="daily.sugar" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.sugar.$error">
+        <div class="form-errors" ng-messages="editGoalForm.sugar.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -85,11 +85,11 @@
           <div class="col">Protein (g)</div>
           <input class ="col" type="number" name="protein" ng-model="daily.protein" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.protein.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.protein.$invalid}">-->
           <!--<span class="input-label">Protein (g)</span>-->
           <!--<input type="number" name="protein" ng-model="daily.protein" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.protein.$error">
+        <div class="form-errors" ng-messages="editGoalForm.protein.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -98,11 +98,11 @@
           <div class="col">Fiber (g)</div>
           <input class ="col" type="number" name="fiber" ng-model="daily.fiber" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.fiber.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.fiber.$invalid}">-->
           <!--<span class="input-label">Fiber (g)</span>-->
           <!--<input type="number" name="fiber" ng-model="daily.fiber" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.fiber.$error">
+        <div class="form-errors" ng-messages="editGoalForm.fiber.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -117,11 +117,11 @@
           <div class="col">Vegetable (cup)</div>
           <input class ="col" type="number" name="vegetable" ng-model="daily.vegetable" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.vegetable.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.vegetable.$invalid}">-->
           <!--<span class="input-label">Veggie (cup)</span>-->
           <!--<input type="number" name="fiber" ng-model="daily.vegetable" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.vegetable.$error">
+        <div class="form-errors" ng-messages="editGoalForm.vegetable.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -130,11 +130,11 @@
           <div class="col">Grain (ounce)</div>
           <input class ="col" type="number" name="grain" ng-model="daily.grain" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.grain.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.grain.$invalid}">-->
           <!--<span class="input-label">Fiber (ounce)</span>-->
           <!--<input type="number" name="grain" ng-model="daily.grain" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.grain.$error">
+        <div class="form-errors" ng-messages="editGoalForm.grain.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -143,11 +143,11 @@
           <div class="col">Fruit (cup)</div>
           <input class ="col" type="number" name="fruit" ng-model="daily.fruit" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.fruit.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.fruit.$invalid}">-->
           <!--<span class="input-label">Fruit (cup)</span>-->
           <!--<input type="number" name="fruit" ng-model="daily.fruit" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.fruit.$error">
+        <div class="form-errors" ng-messages="editGoalForm.fruit.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -156,11 +156,11 @@
           <div class="col">Protein (ounce)</div>
           <input class ="col" type="number" name="proteinG" ng-model="daily.proteinG" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.proteinG.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.proteinG.$invalid}">-->
           <!--<span class="input-label">Protein (ounce)</span>-->
           <!--<input type="number" name="proteinG" ng-model="daily.proteinG" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.fiber.$error">
+        <div class="form-errors" ng-messages="editGoalForm.fiber.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -169,11 +169,11 @@
           <div class="col">Dairy (cup)</div>
           <input class ="col" type="number" name="dairy" ng-model="daily.dairy" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.dairy.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.dairy.$invalid}">-->
           <!--<span class="input-label">Dairy (cup)</span>-->
           <!--<input type="number" name="dairy" ng-model="daily.dairy" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.dairy.$error">
+        <div class="form-errors" ng-messages="editGoalForm.dairy.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -182,11 +182,11 @@
           <div class="col">Oil (tspn)</div>
           <input class ="col" type="number" name="oil" ng-model="daily.oil" style="text-align: center">
         </div>
-        <!--<label class="item item-input" ng-class="{'has-error':editForm.oil.$invalid}">-->
+        <!--<label class="item item-input" ng-class="{'has-error':editGoalForm.oil.$invalid}">-->
           <!--<span class="input-label">Oil (tspn)</span>-->
           <!--<input type="number" name="oil" ng-model="daily.oil" style="text-align: center">-->
         <!--</label>-->
-        <div class="form-errors" ng-messages="editForm.oil.$error">
+        <div class="form-errors" ng-messages="editGoalForm.oil.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
@@ -195,8 +195,9 @@
   </ion-content>
 
   <div class="bar bar-footer">
-    <button class="button button-positive button-block"
+    <button class="button button-positive"
             type="submit"
+            style="width: 100%"
             form="goalForm">Save</button>
   </div>
 

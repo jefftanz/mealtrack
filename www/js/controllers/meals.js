@@ -230,6 +230,26 @@ app.controller('MealEditCtrl', function ($scope,
     });
   };
 
+  $scope.deleteMeal = function (mealId){
+    console.log("deleteMeal mealId: "+mealId);
+    $ionicLoading.show();
+
+    MealService.destroyMeal($scope.mealId).then(function () {
+      console.log("destroy after .then");
+      $ionicLoading.hide();
+
+      $scope.meals.refresh().then(function(){
+        console.log("after destroy.then");
+        $scope.resetFormData();
+        $ionicLoading.hide();
+        //form.$setPristine(true);
+        $state.go("menu.meals");
+      });
+    });
+
+    //MealService.destroyMeal($scope.mealId);
+  };
+
   $scope.setMeal();
   console.log("selectedMeal : "+ MealService.selectedMeal);
 
