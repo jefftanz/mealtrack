@@ -70,7 +70,7 @@ app.controller('MealCreateCtrl', function ($scope,
     console.log("inside saveAndAdd");
   }
 
-	$scope.resetFormData = function () {
+	$scope.resetFormData1 = function () {
 		$scope.formData = {
 			'title': '',
 			'category': '',
@@ -97,7 +97,7 @@ app.controller('MealCreateCtrl', function ($scope,
 
     $scope.saveAndAddVar = false;
 	};
-	$scope.resetFormData();
+	$scope.resetFormData1();
 
 	$scope.trackMeal = function (form) {
 		if (form.$valid) {
@@ -106,7 +106,7 @@ app.controller('MealCreateCtrl', function ($scope,
 			$ionicLoading.show();
 			MealService.track($scope.formData).then(function () {
         var saveAndAdd = $scope.saveAndAddVar;
-				$scope.resetFormData();
+				$scope.resetFormData1();
 				$ionicLoading.hide();
 				form.$setPristine(true);
         //console.log("lastMealIdAdded "+MealService.lastMealIdAdded);

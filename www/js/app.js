@@ -34,7 +34,7 @@ app.run(function ($ionicPlatform) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<TAG>","<TAG>");
+		Parse.initialize("<KEY>","<KEY>");
 });
 
 //TODO turn back on analytics
@@ -110,8 +110,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('menu.goals', {
       url: '/goals',
-      templateUrl: 'templates/menu/goal/edit-goal-daily.html',
-      //templateUrl: 'templates/menu/goal/goal-daily.html',
+      //templateUrl: 'templates/menu/goal/edit-goal-daily.html',
+      templateUrl: 'templates/menu/goal/goal-daily.html',
       controller: 'GoalsCtrl',
     })
     .state('menu.editgoals', {

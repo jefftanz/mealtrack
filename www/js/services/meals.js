@@ -174,7 +174,7 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
         case "protein": iconName = 'img/food/meat-icon.png';break;
         case "oil": iconName = 'img/food/oil-icon.png';break;
         case "dairy": iconName = 'img/food/dairy-icon.png';break;
-        case "other": iconName = 'img/food/other-icon.png';break;
+        case "other": iconName = 'img/food/question-icon.png';break;
         default : iconName = 'img/food/veggie-icon.png';break;
       }
 
