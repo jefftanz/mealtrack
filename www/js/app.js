@@ -24,7 +24,7 @@ var app = angular.module('mealtrack', [
 // 4 ionic deploy, push, analytics
 // ionic . core or something as well?
 
-app.run(function ($ionicPlatform) {
+app.run(function ($ionicPlatform, $location) {
 	$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -39,6 +39,12 @@ app.run(function ($ionicPlatform) {
 
 		// Initialise Parse
 		Parse.initialize("<KEY>","<KEY>");
+
+  var firstVisit = localStorage.getItem('firstVisit');
+  if (!firstVisit) {
+    $location.url('/intro');
+  }
+
 });
 
 //TODO turn on 4 ionic deploy, push, analytics

@@ -7,24 +7,137 @@
   <ion-slide-box style="height:90%;" active-slide="activeSlide">
 
     <ion-slide>
-      <h2>Track Meals</h2>
-      <p>
-        Add your meals throughout the day
-      </p>
+
+      <ion-list>
+        <br>
+        <div class="item item-borderless">
+          <div style="text-align: center" >
+            <h2><i><b>MyPlate meal tracker</b></i></h2>
+          </div >
+        </div>
+
+      </ion-list>
+
+      <div>
+        <img ng-src="img/icon_intro.png" style="display:block; margin:auto;">
+      </div>
+
     </ion-slide>
 
     <ion-slide>
-      <h2>Nutrient Count</h2>
-      <p>
-        Make sure you are getting your full nutrients
-      </p>
+
+      <div class="list">
+        <br>
+        <div class="item item-borderless">
+          <div style="text-align: center" >
+            <h2><i><b>Organized by Food Groups</b></i></h2>
+          </div >
+        </div>
+
+        <div class="item item-avatar-left">
+          <img ng-src="img/food/veggie-icon.png">
+          <div style="vertical-align: middle;" >
+            <h2> Broccoli </h2>
+            <p> Dinner - <span > 3 hours ago</span></p>
+          </div >
+        </div>
+
+        <div class="item item-avatar-left">
+          <img ng-src="img/food/fruit-icon.png">
+          <div style="vertical-align: middle;" >
+            <h2> Apple </h2>
+            <p> Dinner - <span > 3 hours ago</span></p>
+          </div >
+        </div>
+
+        <div class="item item-avatar-left">
+          <img ng-src="img/food/dairy-icon.png">
+          <div style="vertical-align: middle;" >
+            <h2> Cottage cheese </h2>
+            <p> Dinner - <span > 3 hours ago</span></p>
+          </div >
+        </div>
+
+        <div class="item item-avatar-left">
+          <img ng-src="img/food/grain-icon.png">
+          <div style="vertical-align: middle;" >
+            <h2> Muffin </h2>
+            <p> Lunch - <span > 5 hours ago</span></p>
+          </div >
+        </div>
+
+
+      </div >
+
     </ion-slide>
 
     <ion-slide>
-      <h2>Analyze Data</h2>
-      <p>
-        View daily, weekly and monthly nutritional intake
-      </p>
+      <ion-list>
+        <br>
+        <div class="item item-borderless">
+          <div style="text-align: center" >
+            <h2><i><b>Analyze Data</b></i></h2>
+          </div >
+        </div>
+
+
+        <div class="row item item-divider">
+          <div class="col" style="text-align: center">
+            Nutrition intake
+          </div>
+        </div>
+
+        <!-- Calories -->
+        <div class="row item">
+          <div class="col">Calories</div>
+          <div class="col">1800 / 2000</div>
+          <div class="col" style="text-align: center">90%</div>
+        </div>
+
+        <!-- Carbs -->
+        <div class="row item">
+          <div class="col">Carbs</div>
+          <div class="col">100 / 130 g</div>
+          <div class="col" style="text-align: center">77%</div>
+        </div>
+
+        <!-- Fat -->
+        <div class="row item">
+          <div class="col">Fat</div>
+          <div class="col">25 / 70 g</div>
+          <div class="col" style="text-align: center">36%</div>
+        </div>
+
+        <br>
+
+        <div class="row item item-divider">
+          <div class="col" style="text-align: center">
+            MyPlate standards
+          </div>
+        </div>
+
+        <!-- Vegetable -->
+        <div class="row item">
+          <div class="col">Vegetable</div>
+          <div class="col">4 / 4 cups</div>
+          <div class="col" style="text-align: center">100%</div>
+        </div>
+
+        <!-- Fruit -->
+        <div class="row item">
+          <div class="col">Fruit</div>
+          <div class="col">2 / 4 cups</div>
+          <div class="col" style="text-align: center">50%</div>
+        </div>
+
+        <!-- ProteinG -->
+        <div class="row item">
+          <div class="col">Protein</div>
+          <div class="col">3 / 4 ounces</div>
+          <div class="col" style="text-align: center">75%</div>
+        </div>
+
+      </ion-list>
     </ion-slide>
 
   </ion-slide-box>
@@ -33,12 +146,12 @@
 
     <tr>
       <td>
-        <button ng-click="signup()"
-                style="width: 100%; height: 100%;"> Sign Up </button>
+        <button class="button button-royal" ng-click="signup()"
+                style="width: 100%; height: 100%; padding-right: 10px;"> Sign Up </button>
       </td>
       <td>
-        <button ng-click="login()"
-                style="width: 100%; height: 100%;"> Log In </button>
+        <button class="button button-royal" ng-click="login()"
+                style="width: 100%; height: 100%; padding-left: 10px;"> Log In </button>
       </td>
     </tr>
   </table>

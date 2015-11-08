@@ -16,6 +16,7 @@ app.controller('LoginCtrl', function ($scope, $state, AuthService) {
 			console.log("LoginCtrl::login");
 			AuthService.login($scope.formData.email, $scope.formData.password)
 				.then(function () {
+          localStorage.setItem('firstVisit', '1');
 					$state.go("menu.meals")
 				});
 		}
@@ -46,6 +47,7 @@ app.controller('SignupCtrl', function ($scope, $state, AuthService) {
                          $scope.formData.age,
                          $scope.formData.gender)
 				.then(function () {
+          localStorage.setItem('firstVisit', '1');
           //  Set default values after user creation.
           AuthService.setGoalDefaults()
             .then(function () {

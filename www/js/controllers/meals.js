@@ -15,8 +15,6 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
   gMeals = MealService;
 
   console.log("inside MealListCtrl");
-  console.log("state param goToEdit: "+$state.params.gotoEdit);
-  console.log("state param lastMealIdAdded: "+$state.params.lastMealIdAdded);
 
 	$ionicLoading.show();
 	$scope.meals.load().then(function () {
@@ -109,7 +107,6 @@ app.controller('MealCreateCtrl', function ($scope,
 				$scope.resetFormData1();
 				$ionicLoading.hide();
 				form.$setPristine(true);
-        //console.log("lastMealIdAdded "+MealService.lastMealIdAdded);
         console.log("saveAndAdd:"+saveAndAdd);
         if (saveAndAdd){
           $state.go("menu.meals").then(function(){

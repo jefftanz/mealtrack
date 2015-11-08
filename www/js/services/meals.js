@@ -9,7 +9,6 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 		'hasMore': true,
 		'results': [],
     'selectedMeal': null,
-    'lastMealIdAdded': '',
 		'refresh': function () {
 			self.page = 0;
 			self.isLoading = false;
@@ -106,7 +105,6 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 					console.log("Meal tracked");
 					self.results.unshift(meal);
           console.log("new Meal Id "+meal.id);
-          //self.lastMealIdAdded = meal.id;
 					d.resolve(meal);
 				},
 				error: function (item, error) {
