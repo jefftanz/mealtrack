@@ -22,10 +22,6 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
 		$ionicLoading.hide();
 	});
 
-  //$scope.$on("callEditFromAdd", function(event, args){
-  //  console.log("callEditFromAdd event : "+args.mealId);
-  //});
-
 	$scope.refreshItems = function () {
 		$scope.meals.refresh().then(function () {
       console.log("MealListCtrl-refreshItems");

@@ -206,21 +206,6 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
         d.resolve();
       });
 
-      //self.results[index].destroy(null, {
-      //  success: function (meal) {
-      //    console.log("Meal destroyed");
-      //    self.results.splice(index, 1);
-      //    d.resolve(meal);
-      //  },
-      //  error: function (item, error) {
-      //    $ionicPopup.alert({
-      //      title: "Error destroying meal",
-      //      subTitle: error.message
-      //    });
-      //    d.reject(error);
-      //  }
-      //});
-
       console.log("after meal.destroy");
 
       return d.promise;

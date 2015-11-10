@@ -42,21 +42,6 @@ app.service("GoalsService", function ($q, AuthService) {
             //Avg diet values on 2000 Calories
             self.item.id = item.id;
             self.setGoalServiceItemFromParseObject(item);
-            //console.log("load goals item.id : "+item.id);
-            //self.item.calories = item.get("calories");
-            //self.item.fat = item.get("fat");
-            //self.item.carbs = item.get("carbs");
-            //self.item.fiber = item.get("fiber");
-            //self.item.protein = item.get("protein");
-            //self.item.sodium = item.get("sodium");
-            //self.item.sugar = item.get("sugar");
-            //self.item.vegetable = item.get("vegetable");
-            //self.item.fruit = item.get("fruit");
-            //self.item.proteinG = item.get("proteinG");
-            //self.item.dairy = item.get("dairy");
-            //self.item.grain = item.get("grain");
-            //self.item.oil = item.get("oil");
-
             self.results.push(item);
           });
 

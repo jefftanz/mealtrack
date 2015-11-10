@@ -14,24 +14,7 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, $ionicPopup
     $scope.goalData.getUserGoals().then(function () {
       console.log("GoalsCtrl-after goalData.getUserGoals promise");
 
-      //$scope.daily = {
-      //  calories: $scope.goalData.item.calories,
-      //  carbs: $scope.goalData.item.carbs,
-      //  fat: $scope.goalData.item.fat,
-      //  fiber: $scope.goalData.item.fiber,
-      //  protein: $scope.goalData.item.protein,
-      //  sodium: $scope.goalData.item.sodium,
-      //  sugar: $scope.goalData.item.sugar,
-      //  vegetable: $scope.goalData.item.vegetable,
-      //  fruit: $scope.goalData.item.fruit,
-      //  proteinG: $scope.goalData.item.proteinG,
-      //  dairy: $scope.goalData.item.dairy,
-      //  grain: $scope.goalData.item.grain,
-      //  oil: $scope.goalData.item.oil
-      //};
-
       $scope.resetDailyData();
-
       $scope.id = $scope.goalData.item.id;
 
       $ionicLoading.hide();
