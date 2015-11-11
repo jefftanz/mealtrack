@@ -38,7 +38,7 @@ app.run(function ($ionicPlatform, $location) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>","<KEY>");
+		Parse.initialize("<TAG>", "<TAG>");
 
   var firstVisit = localStorage.getItem('firstVisit');
   if (!firstVisit) {

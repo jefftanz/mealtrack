@@ -47,6 +47,10 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
     $state.go("menu.track");
   };
 
+  //TODO Refresh meal data after user has logged out.
+  // Or Remove the logout process for version 1.0?
+  $scope.label = "No More Results";
+
 });
 
 /*********************************************************************

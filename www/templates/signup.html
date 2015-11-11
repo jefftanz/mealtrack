@@ -11,6 +11,8 @@
 		      ng-submit="signup(signupForm)" >
 			<ion-list >
 
+        <!--TODO Validation not working correctly.-->
+
         <!-- Name -->
 				<label class="item item-input item-floating-label"
 				       ng-class="{'has-error':signupForm.name.$invalid}" >
@@ -94,7 +96,6 @@
 					     ng-message="minlength" >Password too short
 					</div >
 				</div >
-
 
 			</ion-list >
 			<button class="button button-royal button-block"
