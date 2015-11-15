@@ -1,0 +1,60 @@
+<ion-view view-title="Account" >
+
+	<ion-nav-buttons side="secondary" >
+	</ion-nav-buttons >
+
+	<ion-content padding="true"
+	             scroll="false" >
+
+		<form name="editAccountForm"
+          id="accountForm"
+		      novalidate=""
+          class="card"
+		      ng-submit="submit(editAccountForm)">
+
+      <!-- Name -->
+      <div class="row item item-borderless">
+        <div class="col">Name</div>
+        <div class="col">{{editAccountFormData.name}}</div>
+      </div>
+
+      <!-- Email -->
+      <div class="row item item-borderless">
+        <div class="col">Email</div>
+        <div class="col">{{editAccountFormData.email}}</div>
+      </div>
+
+      <!-- Age -->
+      <label class="item item-input item-select" >
+        <div class="input-label" >Age</div >
+        <select name="group"
+                ng-model="editAccountFormData.age"
+                ng-required="true" >
+          <option value="0" >19 - 30</option >
+          <option value="1" >31 - 50</option >
+          <option value="2" >51+</option >
+        </select >
+      </label >
+
+      <!-- Gender -->
+      <label class="item item-input item-select">
+        <div class="input-label" >Gender</div >
+        <select name="group"
+                ng-model="editAccountFormData.gender"
+                ng-required="true" >
+          <option value="0" >Male</option >
+          <option value="1" >Female</option >
+        </select >
+      </label >
+
+		</form >
+	</ion-content >
+
+  <div class="bar bar-footer">
+    <button class="button button-positive"
+            type="submit"
+            style="width: 100%"
+            form="accountForm">Save</button>
+  </div>
+
+</ion-view >

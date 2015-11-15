@@ -9,6 +9,7 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, $ionicPopup
 
   console.log("inside GoalsCtrl");
   $ionicLoading.show();
+  console.log("After show");
 
   $scope.loadData = function(){
     $scope.goalData.getUserGoals().then(function () {
@@ -18,6 +19,7 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, $ionicPopup
       $scope.id = $scope.goalData.item.id;
 
       $ionicLoading.hide();
+      console.log("After hide");
     });
   };
 
@@ -50,41 +52,57 @@ app.controller('GoalsCtrl', function ($scope, $state, $ionicLoading, $ionicPopup
   $scope.saveDailyGoals = function(form){
     console.log("GoalsCtrl::saveDailyGoals");
     console.log("DailyGoals.id : "+$scope.id);
+
     $ionicLoading.show();
+    console.log("After show");
 
     GoalsService.updateUserGoals($scope.daily, $scope.id).then(function () {
       //$scope.resetDailyData();
       $scope.loadData();
       form.$setPristine(true);
 
-      var alertPopup = $ionicPopup.alert({
-        title: 'Goals updated!'
-      });
-      alertPopup.then(function(res) {
-        console.log('User goals updated.');
-      });
-
-      console.log("After daily goals updated. go to menu.goals state");
-
       $ionicLoading.hide();
-      //$state.go("menu.goals");
+      console.log("After hide");
+
+      //var alertPopup = $ionicPopup.alert({
+      //  title: 'Goals updated!'
+      //});
+      //alertPopup.then(function(res) {
+      //  console.log('User goals updated.');
+      //});
+
+      //console.log("After daily goals updated. go to menu.goals state");
+
+      $state.go("menu.goals");
+    }).catch(function(reason){
+      console.log("updateUserGoals Handle rejected promise("+reason+") here.");
+      $ionicLoading.hide();
+      console.log("After hide catch");
     });
   };
 
   $scope.resetGoals = function(){
     $ionicLoading.show();
+    console.log("After show");
+
     GoalsService.resetUserGoals().then(function(){
       console.log("after resetUserGoals");
       $scope.resetDailyData();
 
-      var alertPopup = $ionicPopup.alert({
-        title: 'Goals updated!'
-      });
-      alertPopup.then(function(res) {
-        console.log('User goals updated.');
-      });
+      //var alertPopup = $ionicPopup.alert({
+      //  title: 'Goals updated!'
+      //});
+      //alertPopup.then(function(res) {
+      //  console.log('User goals updated.');
+      //});
 
       $ionicLoading.hide();
+      console.log("After hide");
+      $state.go("menu.goals")
+    }).catch(function(reason){
+      console.log("resetUserGoals Handle rejected promise("+reason+") here.");
+      $ionicLoading.hide();
+      console.log("After hide catch");
     });
   };
 

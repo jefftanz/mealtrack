@@ -7,102 +7,99 @@
   </ion-nav-buttons >
 
   <ion-content class="padding">
-      <ion-list>
 
-        <ion-item>
-          <h2>
-            Basic Nutrients
-          </h2>
-        </ion-item>
+    <div class="list card">
 
-        <!-- Calories -->
-        <div class="row item">
-        <div class="col">Calories</div>
-        <div class="col">{{daily.calories}}</div>
+      <div class="item item-divider">
+        <h2>Basic Nutrients</h2>
       </div>
 
-        <!-- Fat -->
-        <div class="row item">
-          <div class="col">Fat</div>
-          <div class="col">{{daily.fat}} g</div>
-        </div>
+      <!-- Calories -->
+      <div class="row item item-borderless">
+        <div class="col">Calories</div>
+        <div class="col ">{{goalData.item.calories}}</div>
+      </div>
 
-        <!-- Sodium -->
-        <div class="row item">
-          <div class="col">Sodium</div>
-          <div class="col">{{daily.sodium}} mg</div>
-        </div>
+      <!-- Fat -->
+      <div class="row item item-borderless">
+        <div class="col">Fat</div>
+        <div class="col">{{goalData.item.fat}} g</div>
+      </div>
 
-        <!-- Carbs -->
-        <div class="row item">
-          <div class="col">Carbs</div>
-          <div class="col">{{daily.carbs}} g</div>
-        </div>
+      <!-- Sodium -->
+      <div class="row item item-borderless">
+        <div class="col">Sodium</div>
+        <div class="col">{{goalData.item.sodium}} mg</div>
+      </div>
 
-        <!-- Sugar -->
-        <div class="row item">
-          <div class="col">sugar</div>
-          <div class="col">{{daily.sugar}} g</div>
-        </div>
+      <!-- Carbs -->
+      <div class="row item item-borderless">
+        <div class="col">Carbs</div>
+        <div class="col">{{goalData.item.carbs}} g</div>
+      </div>
 
-        <!-- Protein -->
-        <div class="row item">
-          <div class="col">Protein</div>
-          <div class="col">{{daily.protein}} g</div>
-        </div>
+      <!-- Sugar -->
+      <div class="row item item-borderless">
+        <div class="col">sugar</div>
+        <div class="col">{{goalData.item.sugar}} g</div>
+      </div>
 
-        <!-- Fiber -->
-        <div class="row item">
-          <div class="col">Fiber</div>
-          <div class="col">{{daily.fiber}} g</div>
-        </div>
+      <!-- Protein -->
+      <div class="row item item-borderless">
+        <div class="col">Protein</div>
+        <div class="col">{{goalData.item.protein}} g</div>
+      </div>
 
+      <!-- Fiber -->
+      <div class="row item item-borderless">
+        <div class="col">Fiber</div>
+        <div class="col">{{goalData.item.fiber}} g</div>
+      </div>
+    </div>
 
-        <br>
+    <div class="list card">
 
-        <ion-item>
-          <h2>
-            Food Groups
-          </h2>
-        </ion-item>
+      <div class="item item-divider">
+        <h2>Food Groups</h2>
+      </div>
 
-        <!-- Vegetable -->
-        <div class="row item">
-          <div class="col">Vegetable</div>
-          <div class="col">{{daily.vegetable}} cups</div>
-        </div>
+      <!-- Vegetable -->
+      <div class="row item item-borderless">
+        <div class="col">Vegetable</div>
+        <div class="col">{{goalData.item.vegetable}} cups</div>
+      </div>
 
-        <!-- Grain -->
-        <div class="row item">
-          <div class="col">Grain</div>
-          <div class="col">{{daily.grain}} ounces</div>
-        </div>
+      <!-- Grain -->
+      <div class="row item item-borderless">
+        <div class="col">Grain</div>
+        <div class="col">{{goalData.item.grain}} ounces</div>
+      </div>
 
-        <!-- Fruit -->
-        <div class="row item">
-          <div class="col">Fruit</div>
-          <div class="col">{{daily.fruit}} cups</div>
-        </div>
+      <!-- Fruit -->
+      <div class="row item item-borderless">
+        <div class="col">Fruit</div>
+        <div class="col">{{goalData.item.fruit}} cups</div>
+      </div>
 
-        <!-- Protein -->
-        <div class="row item">
-          <div class="col">Protein</div>
-          <div class="col">{{daily.proteinG}} ounces</div>
-        </div>
+      <!-- Protein -->
+      <div class="row item item-borderless">
+        <div class="col">Protein</div>
+        <div class="col">{{goalData.item.proteinG}} ounces</div>
+      </div>
 
-        <!-- Dairy -->
-        <div class="row item">
-          <div class="col">Dairy</div>
-          <div class="col">{{daily.dairy}} cups</div>
-        </div>
+      <!-- Dairy -->
+      <div class="row item item-borderless">
+        <div class="col">Dairy</div>
+        <div class="col">{{goalData.item.dairy}} cups</div>
+      </div>
 
-        <!-- Oil -->
-        <div class="row item">
-          <div class="col">Oil</div>
-          <div class="col">{{daily.oil}} teaspoons</div>
-        </div>
+      <!-- Oil -->
+      <div class="row item item-borderless">
+        <div class="col">Oil</div>
+        <div class="col">{{goalData.item.oil}} teaspoons</div>
+      </div>
+    </div>
 
-      </ion-list>
   </ion-content>
 
 </ion-view>

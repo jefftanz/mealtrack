@@ -8,37 +8,40 @@
 
 	<ion-content >
 
-		<ion-refresher
-				pulling-text="Pull to refresh..."
-				on-refresh="refreshItems()" >
-		</ion-refresher >
+    <div class="card">
 
-		<div class="list">
-      <a class="item item-avatar-left"
-         ng-click="editMeal(meal.id)"
-         ng-repeat="meal in meals.results">
+      <ion-refresher
+          pulling-text="Pull to refresh..."
+          on-refresh="refreshItems()" >
+      </ion-refresher >
 
-        <img style="align-content: center" ng-src="{{meal.attributes.iconName}}">
+      <div class="list">
+        <a class="item item-avatar-left"
+           ng-click="editMeal(meal.id)"
+           ng-repeat="meal in meals.results">
 
-        <div style="vertical-align: middle;" >
-          <h2 >{{meal.attributes.title}}</h2 >
-          <p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
-        </div >
-      </a>
+          <img style="align-content: center" ng-src="{{meal.attributes.iconName}}">
 
-		</div >
+          <div style="vertical-align: middle;" >
+            <h2 >{{meal.attributes.title}}</h2 >
+            <p>{{meal.attributes.created | mealtime}} - <span am-time-ago="meal.attributes.created"></span></p>
+          </div >
+        </a>
 
-		<ion-infinite-scroll
-				ng-if="meals.hasMore"
-				on-infinite="nextPage()"
-				immediate-check="false" >
-		</ion-infinite-scroll >
+      </div >
 
-		<div class="padding text-center"
-		     ng-if="!meals.hasMore" >
-			<p >No more results</p >
-		</div >
+      <ion-infinite-scroll
+          ng-if="meals.hasMore"
+          on-infinite="nextPage()"
+          immediate-check="false" >
+      </ion-infinite-scroll >
 
+      <div class="padding text-center"
+           ng-if="!meals.hasMore" >
+        <p >No more results</p >
+      </div >
+
+    </div>
 
 	</ion-content >
 </ion-view >

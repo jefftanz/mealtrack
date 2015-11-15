@@ -4,14 +4,18 @@ app.service('AuthService', function ($q, $ionicPopup) {
 
 	var self = {
 		user: Parse.User.current(),
+    ageDesc : '',
+    genderDesc: '',
 		login: function (email, password) {
 			var d = $q.defer();
 
 			Parse.User.logIn(email, password, {
 				success: function (user) {
+          console.log("inside parse.user.login");
 					self.user = user;
           //TODO turn on 4 ionic deploy, push, analytics
           //self.registerUser();
+          self.setDescriptions();
 					d.resolve(self.user);
 				},
 				error: function (user, error) {
@@ -44,6 +48,7 @@ app.service('AuthService', function ($q, $ionicPopup) {
 					self.user = user;
           //TODO turn on 4 ionic deploy, push, analytics
           //self.registerUser();
+          self.setDescriptions();
 					d.resolve(self.user);
 				},
 				error: function (user, error) {
@@ -54,7 +59,6 @@ app.service('AuthService', function ($q, $ionicPopup) {
 					d.reject(error);
 				}
 			});
-
 
 			return d.promise;
 		},
@@ -73,6 +77,7 @@ app.service('AuthService', function ($q, $ionicPopup) {
 			user.save(null, {
 				success: function (user) {
 					self.user = user;
+          self.setDescriptions();
 					d.resolve(self.user);
 				},
 				error: function (user, error) {
@@ -86,6 +91,24 @@ app.service('AuthService', function ($q, $ionicPopup) {
 
 			return d.promise;
 		},
+    setDescriptions: function(){
+
+      console.log("inside setDescriptions");
+      console.log("self.user.attributes.age: "+self.user.attributes.age);
+      console.log("self.user.attributes.gender: "+self.user.attributes.gender);
+
+      switch(parseInt(self.user.attributes.age)){
+        case 0: self.ageDesc = "19 - 30"; break;
+        case 1: self.ageDesc = "31 - 50"; break;
+        case 2: self.ageDesc = "51+"; break;
+      }
+
+      switch(parseInt(self.user.attributes.gender)){
+        case 0: self.genderDesc = "Male"; break;
+        case 1: self.genderDesc = "Female"; break;
+      }
+
+    },
     setGoalDefaults: function () {
       var d = $q.defer();
       var user = self.user;

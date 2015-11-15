@@ -9,37 +9,29 @@
           id ="createForm"
 		      novalidate=""
 		      ng-submit="trackMeal(createMealForm)"
-		      class="create-form" >
+		      class="create-form card" >
 			<ion-list >
 
         <!-- Title -->
         <div class="row item" >
           <div class="col">Description</div>
-          <input class ="col" type="text" name="title" ng-model="formData.title" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="text" name="title"
+                 ng-model="formData.title"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.title.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
         <!-- Food Group -->
-        <label class="item item-input item-select"
-               ng-class="{'has-error':editForm.group.$invalid}" >
+        <label class="item item-input item-select" >
           <div class="input-label" >Food Group</div >
           <select
             ng-options="group as group.desc for group in formData.foodGroups track by group.value"
             ng-model="formData.selectedOption">
           </select>
         </label >
-
-        <!--<div class="row item" style="padding-top: 10px; padding-bottom: 10px">-->
-          <!--<div class="col">Food Group</div>-->
-          <!--<div class="col item-input item-select" >-->
-            <!--<select-->
-              <!--ng-options="group as group.desc for group in formData.foodGroups track by group.value"-->
-              <!--ng-model="formData.selectedOption">-->
-            <!--</select>-->
-          <!--</div>-->
-        </div>
 
         <div class="form-errors"
              ng-messages="createMealForm.group.$error">
@@ -49,7 +41,11 @@
         <!-- Amount -->
         <div class="row item" >
           <div class="col">Amount ({{formData.selectedOption.unit}})</div>
-          <input class ="col" type="number" name="amount" ng-model="formData.amount" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="amount"
+                 ng-model="formData.amount"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="editForm.amount.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -58,7 +54,11 @@
         <!-- Calories -->
         <div class="row item" >
           <div class="col">Calories (g)</div>
-          <input class ="col" type="number" name="calories" ng-model="formData.calories" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="calories"
+                 ng-model="formData.calories"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.calories.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -67,7 +67,11 @@
         <!-- Fat -->
         <div class="row item" >
           <div class="col">Fat (g)</div>
-          <input class ="col" type="number" name="fat" ng-model="formData.fat" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="fat"
+                 ng-model="formData.fat"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.fat.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -76,7 +80,11 @@
         <!-- Sodium -->
         <div class="row item" >
           <div class="col">Sodium (mg)</div>
-          <input class ="col" type="number" name="sodium" ng-model="formData.sodium" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="sodium"
+                 ng-model="formData.sodium"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.sodium.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -85,7 +93,11 @@
         <!-- Carbs -->
         <div class="row item" >
           <div class="col">Carbs (g)</div>
-          <input class ="col" type="number" name="carbs" ng-model="formData.carbs" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="carbs"
+                 ng-model="formData.carbs"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.carbs.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -94,7 +106,11 @@
         <!-- Sugar -->
         <div class="row item" >
           <div class="col">Sugar (g)</div>
-          <input class ="col" type="number" name="sugar" ng-model="formData.sugar" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="sugar"
+                 ng-model="formData.sugar"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.sugar.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -103,7 +119,11 @@
         <!-- Protein -->
         <div class="row item" >
           <div class="col">Protein (g)</div>
-          <input class ="col" type="number" name="protein" ng-model="formData.protein" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="protein"
+                 ng-model="formData.protein"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.protein.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
@@ -112,30 +132,17 @@
         <!-- Fiber -->
         <div class="row item" >
           <div class="col">Fiber (g)</div>
-          <input class ="col" type="number" name="fiber" ng-model="formData.fiber" style="text-align: left">
+          <input class ="col item-input-wrapper"
+                 type="number"
+                 name="fiber"
+                 ng-model="formData.fiber"
+                 style="text-align: left; padding-left: 10px;">
         </div>
         <div class="form-errors" ng-messages="createMealForm.fiber.$error">
           <div ng-messages-include="templates/form-errors.html" ></div>
         </div >
 
 			</ion-list >
-
-      <!--<table style="table-layout: fixed; width: 100%; height: 10%;">-->
-        <!--<tr>-->
-          <!--<td>-->
-            <!--<button style="width: 100%;"-->
-                    <!--class="button button-positive button-block"-->
-                    <!--type="submit" >Save-->
-            <!--</button >-->
-          <!--</td>-->
-          <!--<td>-->
-            <!--<button style="width: 100%;"-->
-                    <!--class="button button-positive button-block"-->
-                    <!--type="submit" ng-click="saveAndAdd()">Save & Add-->
-            <!--</button >-->
-          <!--</td>-->
-        <!--</tr>-->
-      <!--</table>-->
 
 		</form >
 	</ion-content >

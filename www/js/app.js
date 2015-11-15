@@ -113,8 +113,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     })
     .state('menu.goals', {
       url: '/goals',
-      templateUrl: 'templates/menu/edit-goal-daily.html',
-      //templateUrl: 'templates/menu/goal-daily.html',
+      //templateUrl: 'templates/menu/edit-goal-daily.html',
+      templateUrl: 'templates/menu/goal-daily.html',
       controller: 'GoalsCtrl',
     })
     .state('menu.editgoals', {
@@ -142,6 +142,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
       templateUrl: 'templates/menu/account.html',
       controller : 'AccountCtrl'
 		})
+    .state('menu.editaccount', {
+      url: '/account/edit',
+      templateUrl: 'templates/menu/edit-account.html',
+      controller : 'AccountCtrl'
+    })
     .state('menu.groups', {
       url: '/groups',
       templateUrl: 'templates/menu/groups.html',
