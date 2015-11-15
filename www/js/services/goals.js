@@ -1,4 +1,6 @@
-var app = angular.module('mealtrack.services.goals', []);
+var app = angular.module('mealtrack.services.goals', [
+  "mealtrack.myUtil.basic"
+]);
 
 app.service("GoalsService", function ($q, AuthService) {
 
@@ -24,8 +26,6 @@ app.service("GoalsService", function ($q, AuthService) {
     'getUserGoals': function () {
       self.isLoading = true;
       var d = $q.defer();
-
-      console.log("get User Goals - query");
 
       // Initialise Query
       var DailyGoal = Parse.Object.extend("DailyGoal");
@@ -83,44 +83,37 @@ app.service("GoalsService", function ($q, AuthService) {
       self.item.oil = formData.oil;
     },
     'updateUserGoals': function(dailyGoalData, goalId){
-      //TODO get this saving correctly to Parse.
       self.isSaving = true;
       var d = $q.defer();
-
-      console.log("DailyGoalData.calories : "+dailyGoalData.calories);
-      console.log("GoalId : "+goalId);
 
       var DailyGoal = Parse.Object.extend("DailyGoal");
       var user = AuthService.user;
       var parseObject = new DailyGoal(self.item);
 
+      //User info
       parseObject.set("owner", user);
       parseObject.set("id", self.item.id);
-      parseObject.set("calories", dailyGoalData.calories);
-      parseObject.set("fat", dailyGoalData.fat);
-      parseObject.set("carbs", dailyGoalData.carbs);
-      parseObject.set("fiber", dailyGoalData.fiber);
-      parseObject.set("protein", dailyGoalData.protein);
-      parseObject.set("sodium", dailyGoalData.sodium);
-      parseObject.set("sugar", dailyGoalData.sugar);
 
-      parseObject.set("vegetable", dailyGoalData.vegetable);
-      parseObject.set("fruit", dailyGoalData.fruit);
-      parseObject.set("proteinG", dailyGoalData.proteinG);
-      parseObject.set("dairy", dailyGoalData.dairy);
-      parseObject.set("grain", dailyGoalData.grain);
-      parseObject.set("oil", dailyGoalData.oil);
+      //Basic Nutrition
+      parseObject.set("calories", parseMyInt(dailyGoalData.calories));
+      parseObject.set("fat", parseMyInt(dailyGoalData.fat));
+      parseObject.set("carbs", parseMyInt(dailyGoalData.carbs));
+      parseObject.set("fiber", parseMyInt(dailyGoalData.fiber));
+      parseObject.set("protein", parseMyInt(dailyGoalData.protein));
+      parseObject.set("sodium", parseMyInt(dailyGoalData.sodium));
+      parseObject.set("sugar", parseMyInt(dailyGoalData.sugar));
+
+      //Food Groups
+      parseObject.set("vegetable", parseMyInt(dailyGoalData.vegetable));
+      parseObject.set("fruit", parseMyInt(dailyGoalData.fruit));
+      parseObject.set("proteinG", parseMyInt(dailyGoalData.proteinG));
+      parseObject.set("dairy", parseMyInt(dailyGoalData.dairy));
+      parseObject.set("grain", parseMyInt(dailyGoalData.grain));
+      parseObject.set("oil", parseMyInt(dailyGoalData.oil));
 
       parseObject.save(null, {
         success: function (returnObject) {
-          console.log("dailyGoal updated");
-          console.log("updated goal.id: "+returnObject.id);
-          console.log("calories: "+returnObject.get("calories"));
-          //self.resetUserGoals(dailyGoal);
-
-          console.log("set goal service item from parse object return success.");
           self.setGoalServiceItemFromParseObject(returnObject);
-
           d.resolve(returnObject);
         },
         error: function (item, error) {

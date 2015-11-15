@@ -15,7 +15,8 @@ var app = angular.module('mealtrack', [
 	'mealtrack.services.meals',
   'mealtrack.services.stats',
   'mealtrack.services.goals',
-	'mealtrack.filters.mealtime'
+	'mealtrack.filters.mealtime',
+  'mealtrack.myUtil.basic'
 ]);
 
 //TODO need to add
@@ -38,7 +39,7 @@ app.run(function ($ionicPlatform, $location) {
 	});
 
 		// Initialise Parse
-		Parse.initialize("<KEY>","<KEY>");
+		Parse.initialize("<KEY>", "<KEY>");
 
   var firstVisit = localStorage.getItem('firstVisit');
   if (!firstVisit) {

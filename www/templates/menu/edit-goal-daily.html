@@ -20,7 +20,8 @@
           </div>
 
           <!-- Calories -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Calories</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -28,13 +29,10 @@
                    ng-model="daily.calories"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <!-- TODO Do I need these errors or can I check if it is string empt and fill in 0s? -->
-          <div class="form-errors" ng-messages="editGoalForm.calories.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Fat -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Fat (g)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -42,12 +40,10 @@
                    ng-model="daily.fat"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.fat.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Sodium -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Sodium (mg)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -55,12 +51,10 @@
                    ng-model="daily.sodium"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.sodium.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Carbs -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Carbs (g)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -68,12 +62,10 @@
                    ng-model="daily.carbs"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.carbs.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Sugar -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Sugar (g)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -81,12 +73,10 @@
                    ng-model="daily.sugar"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.sugar.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Protein -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Protein (g)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -94,12 +84,10 @@
                    ng-model="daily.protein"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.protein.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Fiber -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Fiber (g)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -107,9 +95,6 @@
                    ng-model="daily.fiber"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.fiber.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
         </div>
 
@@ -120,7 +105,8 @@
           </div>
 
           <!-- Vegetable -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Vegetable (cup)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -128,12 +114,10 @@
                    ng-model="daily.vegetable"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.vegetable.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Grain -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Grain (ounce)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -141,12 +125,10 @@
                    ng-model="daily.grain"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.grain.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Fruit -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Fruit (cup)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -154,12 +136,10 @@
                    ng-model="daily.fruit"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.fruit.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Protein -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Protein (ounce)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -167,12 +147,10 @@
                    ng-model="daily.proteinG"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.fiber.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Dairy -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 10px;">
             <div class="col">Dairy (cup)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -180,12 +158,10 @@
                    ng-model="daily.dairy"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.dairy.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
           <!-- Oil -->
-          <div class="row item" >
+          <div class="row item"
+               style="padding-top: 5px; padding-bottom: 5px;">
             <div class="col">Oil (tspn)</div>
             <input class ="col item-input-wrapper"
                    type="number"
@@ -193,9 +169,6 @@
                    ng-model="daily.oil"
                    style="text-align: left; padding-left: 10px;">
           </div>
-          <div class="form-errors" ng-messages="editGoalForm.oil.$error">
-            <div ng-messages-include="templates/form-errors.html" ></div>
-          </div >
 
         </div>
 

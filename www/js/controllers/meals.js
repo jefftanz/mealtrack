@@ -4,7 +4,7 @@ var app = angular.module('mealtrack.controllers.meals', []);
 /*********************************************************************
  * Global meals array
  *********************************************************************/
- var gMeals;
+ //var gMeals;
 
 /*********************************************************************
  * MealListCtrl
@@ -18,7 +18,6 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
 
 	$ionicLoading.show();
 	$scope.meals.load().then(function () {
-    //console.log("MealListCtrl-after meals.load promise");
 		$ionicLoading.hide();
 	});
 
@@ -37,19 +36,16 @@ app.controller('MealListCtrl', function ($scope, $state, $ionicLoading, MealServ
 	};
 
   $scope.editMeal = function(id){
-    //console.log("mealId : "+id);
-    //console.log("MealListCtrl-editMeal");
     $state.go("menu.edit", { "mealId": id});
   };
 
   $scope.addMeal = function(){
-    //console.log("MealListCtrl-addMeal");
     $state.go("menu.track");
   };
 
   //TODO Refresh meal data after user has logged out.
   // Or Remove the logout process for version 1.0?
-  $scope.label = "No More Results";
+  //$scope.label = "No More Results";
 
 });
 
@@ -62,11 +58,6 @@ app.controller('MealCreateCtrl', function ($scope,
                                            $ionicLoading,
                                            $cordovaCamera,
                                            MealService) {
-
-  $scope.saveAndAdd = function(){
-    $scope.saveAndAddVar = true;
-    //console.log("inside saveAndAdd");
-  }
 
 	$scope.resetFormData1 = function () {
 		$scope.formData = {
@@ -93,21 +84,18 @@ app.controller('MealCreateCtrl', function ($scope,
       'selectedOption': {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"}
 		};
 
-    $scope.saveAndAddVar = false;
 	};
 	$scope.resetFormData1();
 
-	$scope.trackMeal = function (form) {
+	$scope.createMeal = function (form) {
 		if (form.$valid) {
-			//console.log("MealCreateCtrl::trackMeal");
 
 			$ionicLoading.show();
-			MealService.track($scope.formData).then(function () {
+			MealService.createMeal($scope.formData).then(function () {
         var saveAndAdd = $scope.saveAndAddVar;
 				$scope.resetFormData1();
 				$ionicLoading.hide();
 				form.$setPristine(true);
-        //console.log("saveAndAdd:"+saveAndAdd);
         if (saveAndAdd){
           $state.go("menu.meals").then(function(){
             $state.go("menu.track");
@@ -133,9 +121,6 @@ app.controller('MealEditCtrl', function ($scope,
 
   $scope.mealId = $state.params.mealId;
   $scope.meals = MealService;
-
-  //console.log("state param mealId : "+ $scope.mealId);
-  //console.log("length of meals array : "+ MealService.results.length);
 
   $scope.setMeal = function(){
     var meal = MealService.getMeal($state.params.mealId);
@@ -164,9 +149,6 @@ app.controller('MealEditCtrl', function ($scope,
       'selectedOption':  {'desc': "Vegetable", 'value': "veggie", 'unit': "cup"}
     };
 
-    //console.log("before group : "+$scope.formData.group);
-    //console.log("before selectedOption.value : "+$scope.formData.selectedOption.value);
-
     //Set selectedOption in Food Groups combobox
     var index = 0;
     switch($scope.formData.group){
@@ -181,8 +163,6 @@ app.controller('MealEditCtrl', function ($scope,
     };
     $scope.formData.selectedOption = $scope.formData.foodGroups[index];
 
-    //console.log("after group : "+$scope.formData.group);
-    //console.log("after selectedOption.value : "+$scope.formData.selectedOption.value);
   };
 
   //TODO move foundGroups from formData to a global variable for this controller.
@@ -214,7 +194,6 @@ app.controller('MealEditCtrl', function ($scope,
   };
 
   $scope.saveMeal = function (form) {
-    //console.log("MealEditCtrl::saveMeal");
     $ionicLoading.show();
     MealService.update($scope.formData, $scope.mealId).then(function () {
 
@@ -228,26 +207,20 @@ app.controller('MealEditCtrl', function ($scope,
   };
 
   $scope.deleteMeal = function (mealId){
-    //console.log("deleteMeal mealId: "+mealId);
     $ionicLoading.show();
 
     MealService.destroyMeal($scope.mealId).then(function () {
-      //console.log("destroy after .then");
       $ionicLoading.hide();
 
       $scope.meals.refresh().then(function(){
-        //console.log("after destroy.then");
         $scope.resetFormData();
         $ionicLoading.hide();
-        //form.$setPristine(true);
         $state.go("menu.meals");
       });
     });
 
-    //MealService.destroyMeal($scope.mealId);
   };
 
   $scope.setMeal();
-  //console.log("selectedMeal : "+ MealService.selectedMeal);
 
 });

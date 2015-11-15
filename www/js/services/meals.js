@@ -1,4 +1,6 @@
-var app = angular.module('mealtrack.services.meals', []);
+var app = angular.module('mealtrack.services.meals', [
+  "mealtrack.myUtil.basic"
+]);
 
 app.service("MealService", function ($q, $ionicPopup, AuthService) {
 	var self = {
@@ -25,8 +27,6 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 			self.isLoading = true;
 			var d = $q.defer();
 
-      //console.log("loading meal service data");
-
 			// Initialise Query
 			var Meal = Parse.Object.extend("Meal");
 			var mealQuery = new Parse.Query(Meal);
@@ -45,12 +45,11 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 						//var meal = new Meal(item);
 						//self.results.push(meal);
 
-            //console.log("item group:"+item.get("group"));
-
             self.results.push(item);
 
 					});
 					//console.debug(self.results);
+					//Displays objects in console to easily read
 
 					// Are we at the end of the list?
 					if (results.length == 0) {
@@ -64,7 +63,7 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 
 			return d.promise;
 		},
-		'track': function (data) {
+		'createMeal': function (data) {
 			self.isSaving = true;
 			var d = $q.defer();
       var iconName;
@@ -74,17 +73,15 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 
 			meal.set("owner", user);
 			meal.set("title", data.title);
-			meal.set("calories", parseInt(data.calories));
-      meal.set("fat", parseInt(data.fat));
-      meal.set("sodium", parseInt(data.sodium));
-      meal.set("sugar", parseInt(data.sugar));
-      meal.set("protein", parseInt(data.protein));
-      meal.set("carbs", parseInt(data.carbs));
-      meal.set("fiber", parseInt(data.fiber));
-      //console.log("formData.selectedOption.value : "+ data.selectedOption.value);
+			meal.set("calories", parseMyInt(data.calories));
+      meal.set("fat", parseMyInt(data.fat));
+      meal.set("sodium", parseMyInt(data.sodium));
+      meal.set("sugar", parseMyInt(data.sugar));
+      meal.set("protein", parseMyInt(data.protein));
+      meal.set("carbs", parseMyInt(data.carbs));
+      meal.set("fiber", parseMyInt(data.fiber));
       meal.set("group",  data.selectedOption.value);
-      //console.log("formData.amount : "+ data.amount);
-      meal.set("amount", parseInt(data.amount));
+      meal.set("amount", parseMyInt(data.amount));
 			meal.set("created", new Date());
 
       switch(data.selectedOption.value){
@@ -102,9 +99,7 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 
 			meal.save(null, {
 				success: function (meal) {
-					//console.log("Meal tracked");
 					self.results.unshift(meal);
-          //console.log("new Meal Id "+meal.id);
 					d.resolve(meal);
 				},
 				error: function (item, error) {
@@ -119,26 +114,21 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 			return d.promise;
 		},
     'getMeal': function (mealId) {
-      //console.log("this.results.length : "+this.results.length);
       for (var i = 0; i < this.results.length; i++){
         if (this.results[i].id == mealId){
           self.selectedMeal = this.results[i];
           return this.results[i];
-          //console.log("Found meal");
         }
       }
       console.log("Meal Not found");
       return undefined;
     },
     'getMealIndex': function (mealId) {
-      //console.log("this.results.length : "+this.results.length);
       for (var i = 0; i < this.results.length; i++){
         if (this.results[i].id == mealId){
           return i;
-          //console.log("Found meal index");
         }
       }
-      //console.log("Meal index Not found");
       return undefined;
     },
     'update': function (formData, mealId) {
@@ -153,17 +143,15 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
       meal.set("owner", user);
       meal.set("id", mealId);
       meal.set("title", formData.title);
-      meal.set("calories", parseInt(formData.calories));
-      meal.set("fat", parseInt(formData.fat));
-      meal.set("sodium", parseInt(formData.sodium));
-      meal.set("sugar", parseInt(formData.sugar));
-      meal.set("protein", parseInt(formData.protein));
-      meal.set("carbs", parseInt(formData.carbs));
-      meal.set("fiber", parseInt(formData.fiber));
-      //console.log("getMeal formData.group.value : "+formData.selectedOption.value);
+      meal.set("calories", parseMyInt(formData.calories));
+      meal.set("fat", parseMyInt(formData.fat));
+      meal.set("sodium", parseMyInt(formData.sodium));
+      meal.set("sugar", parseMyInt(formData.sugar));
+      meal.set("protein", parseMyInt(formData.protein));
+      meal.set("carbs", parseMyInt(formData.carbs));
+      meal.set("fiber", parseMyInt(formData.fiber));
       meal.set("group", formData.selectedOption.value);
-      //console.log("getMeal formData.amount : "+formData.amount);
-      meal.set("amount", parseInt(formData.amount));
+      meal.set("amount", parseMyInt(formData.amount));
 
       switch(formData.selectedOption.value){
         case "fruit": iconName = 'img/food/fruit-icon.png';break;
@@ -180,7 +168,6 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
 
       meal.save(null, {
         success: function (meal) {
-          //console.log("Meal updated");
           self.results.unshift(meal);
           d.resolve(meal);
         },
@@ -196,17 +183,13 @@ app.service("MealService", function ($q, $ionicPopup, AuthService) {
       return d.promise;
     },
     'destroyMeal': function (mealId) {
-      //console.log("destroyMeal mealId: "+mealId);
       self.isSaving = true;
       var d = $q.defer();
       var index = this.getMealIndex(mealId);
 
       self.results[index].destroy().then(function(){
-        //console.log("after destroy then");
         d.resolve();
       });
-
-      //console.log("after meal.destroy");
 
       return d.promise;
     }
